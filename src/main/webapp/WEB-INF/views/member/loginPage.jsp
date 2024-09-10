@@ -25,7 +25,6 @@
 	    height: 50px;
 	    border-top-left-radius: 10px;
 	    border-top-right-radius: 10px;
-	    text-align: center;
 	    border-bottom: none;
 	    border-width: 1px;
 	}
@@ -34,7 +33,6 @@
 	    height: 50px;
 	    border-bottom-left-radius: 10px;
 	    border-bottom-right-radius: 10px;
-	    text-align: center;
 	    border-width: 1px;
 	}
 	#logo{
@@ -92,18 +90,26 @@
 </style>
 </head>
 <body>
+	<%
+		String contextPath = request.getContextPath();
+		String uncorrectLogin = (String)request.getAttribute("uncorrectLogin");
+	%>
     <table>
         <tr>
-            <th><img src="resource/images/wuctionLogo.png" alt=""></th>
+            <th><img src="resources/images/wuctionLogo.png" alt=""></th>
         </tr>
+            <form action="<%= contextPath %>/login.me" method="post">
         <tr>
             <td>
-                <input class="input1" type="text"> <br>
-                <input class="input2" type="password">
+                <input class="input1" type="text" name="userId" placeholder="아이디"> <br>
+                <input class="input2" type="password" name="userPwd" placeholder="비밀번호">
                 <div id="idCheck">
                     <div id="idSave">
                         <input type="checkbox" name="remember" id="remember">
-                        <label for="remember"></label> &nbsp;<text>아이디 저장</text><text id="id-none">계정 정보가 없습니다.</text>
+                        <label for="remember"></label> &nbsp;<text>아이디 저장</text>
+                        <% if (uncorrectLogin != null && !uncorrectLogin.isEmpty()) { %>
+    						<text id="id-none"><%= uncorrectLogin %></text>
+						<% } %>
                     </div>
                 </div>
             </td>
@@ -111,14 +117,15 @@
         <tr>
         <tr>
             <td>
-                <button id="btn">로그인</button>
+                <button id="btn" type="submit">로그인</button>
             </td>
+            </form>
         </tr>
         <tr>
             <td>
-                <a href="">아이디 찾기</a>
-                <a href="">비밀번호 찾기</a>
-                <a href="">회원가입</a>
+                <a href="<%= contextPath %>/idFindPage.me">아이디 찾기</a>
+                <a href="<%= contextPath %>/pwdFindPage.me">비밀번호 찾기</a>
+                <a href="<%= contextPath %>/signupPage.me">회원가입</a>
             </td>
         </tr>
     </table>

@@ -114,6 +114,9 @@
 </style>
 </head>
 <body>
+	<% 
+		String contextPath = request.getContextPath();
+	%>
     <table>
         <tr>
             <th><img src="../resource/Group38.png" alt="" style="margin-bottom: 50px;"></th>
@@ -146,7 +149,7 @@
             </td>
         </tr>
         <tr>
-            <td><button id="id-find-btn">로그인 하기</button></td>
+            <td><form action="<%= contextPath %>/loginPage.me"><button id="id-find-btn" type="submit">로그인 하기</button></form></td>
         </tr>
     </table>
 </body>
