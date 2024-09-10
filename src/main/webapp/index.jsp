@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="WEB-INF/views/member/myPostingPage.jsp" %>
+	<%@ include file="WEB-INF/views/common/mainPage.jsp" %>
 </body>
 </html>
