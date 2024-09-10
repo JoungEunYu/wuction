@@ -5,18 +5,28 @@
 <mapper namespace="memberMapper">
 
 	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
-	<resultMap type="" id="memberResultSet">
+	<resultMap type="Member" id="memberResultSet">
 	<!-- 
 		property = "객체 클래스 파일의 필드변수명"
 		column = "DB의 해당 컬럼 명"
 	 -->
-		<result property="" column=""/>
-		<result property="" column=""/>
-		<result property="" column=""/>
+		<result property="memNo" column="mem_no"/>
+		<result property="memId" column="mem_id"/>
+		<result property="memPwd" column="mem_pwd"/>
+		<result property="name" column="name"/>
+		<result property="birthDate" column="birth_date"/>
+		<result property="email" column="email"/>
+		<result property="joinDate" column="join_date"/>
+		<result property="status" column="status"/>
 	</resultMap>
 	
-	<select id="insertMember" resultType="memberResultSet">
-		<!-- 실행할 select문 -->
+	<select id="selectMember" resultMap="memberResultSet">
+		SELECT *
+			FROM MEMBER
+		WHERE MEM_ID = #{memId} AND MEM_PWD = #{memPwd} AND STATUS = 'Y'
 	</select>
+	
+	
+	
 	
 </mapper>

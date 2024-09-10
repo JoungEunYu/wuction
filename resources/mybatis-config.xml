@@ -12,7 +12,7 @@
   
 	<!-- 사용할 자료형의 별칭 선언 : 추가 필요 -->
   	<typeAliases>
-  		<typeAlias type="" alias=""/>
+  		<typeAlias type="com.woong.wuction.member.model.vo.Member" alias="Member"/>
   	</typeAliases>
   	
   	<!-- mybatis에서 연동할 DB정보를 작성 -->
@@ -31,9 +31,7 @@
       
     <!-- 실행할 sql믄을 저장한 mapper 파일 등록 -->
   	<mappers>
-  	  	<mapper resource="resources/mappers/member-mapper.xml"/>
-    	<mapper resource="resources/mappers/posting-mapper.xml"/>
-    	<mapper resource="resources/mappers/bid-mapper.xml"/>
+  	  	<mapper resource="/mappers/member-mapper.xml"/>
   	</mappers>
       
 </configuration>
