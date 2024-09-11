@@ -110,6 +110,10 @@
 	    line-height: 40px;
 	    border-radius: 10px;
 	}
+	#id-find-btn a {
+		color: #ffffff;
+       	text-decoration: none;
+	}
 
 </style>
 </head>
@@ -149,7 +153,7 @@
             </td>
         </tr>
         <tr>
-            <td><form action="<%= contextPath %>/loginPage.me"><button id="id-find-btn" type="submit">로그인 하기</button></form></td>
+            <td><button id="id-find-btn" type="submit"><a href="<%= contextPath %>/loginPage.me">로그인 하기</a></button></td>
         </tr>
     </table>
 </body>
