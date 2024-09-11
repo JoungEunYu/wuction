@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class signupPageController
+ * Servlet implementation class InsertMemberController
  */
-@WebServlet("/signupPage.me")
-public class SignupPageController extends HttpServlet {
+@WebServlet("/insert.me")
+public class InsertMemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignupPageController() {
+    public InsertMemberController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +27,19 @@ public class SignupPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("WEB-INF/views/member/signupPage.jsp").forward(request, response);
-	}
+		String id = request.getParameter("userId");
+		String pw = request.getParameter("userPwd");
+		String name = request.getParameter("userName");
+		String birth = request.getParameter("userBirth");
+		String PostCode = request.getParameter("userPostCode");
+		String address = request.getParameter("userAddress");
+		String adDetail = request.getParameter("userAddressDetail");
+		String email = request.getParameter("userEmail");
+		String authNum = request.getParameter("authNum");
 
+		
+	}
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
