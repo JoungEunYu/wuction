@@ -72,7 +72,6 @@
        }
 
        .posting-btn-area button {
-         color: #ffffff;
          font-size: 16px;
          background-color: #ff5252;
          border-radius: 30px;
@@ -82,6 +81,11 @@
          height: 40%;
          font-weight: 600;
          cursor: pointer;
+       }
+       
+       .posting-btn-area button a {
+       	color: #ffffff;
+       	text-decoration: none;
        }
     </style>
 </head>
@@ -129,9 +133,19 @@
           />
         </div>
 
-        <div class="posting-btn-area">
-          <button>내 상품 등록</button>
-        </div>
+	  <c:choose>
+	  	<c:when test="${empty loginUser}">
+	        <div class="posting-btn-area">
+	          <button><a href="<%= contextPath %>/loginPage.me">내 상품 등록</a></button>
+	        </div>
+	    </c:when>
+	    <c:otherwise>
+	    	<div class="posting-btn-area">
+	          <button><a href="<%= contextPath %>/postingPage.me">내 상품 등록</a></button>
+	        </div>
+	    </c:otherwise>
+	 </c:choose>
+	 
       </header>
   </body>
 </html>
