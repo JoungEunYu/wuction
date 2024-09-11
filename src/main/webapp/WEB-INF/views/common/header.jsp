@@ -141,7 +141,7 @@
 	    </c:when>
 	    <c:otherwise>
 	    	<div class="posting-btn-area">
-	          <button><a href="<%= contextPath %>/postingPage.me">내 상품 등록</a></button>
+	          <button><a href="<%= contextPath %>/postingPage.pr">내 상품 등록</a></button>
 	        </div>
 	    </c:otherwise>
 	 </c:choose>
