@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>Insert title here</title>
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <style>
             table {
                 padding-top: 20px;
@@ -179,8 +180,9 @@
                             <label for="" class="text">아이디</label>
                         </td>
                         <td>
-                            <input type="text" name="userId" class="shortInput"><button class="blackBtn">중복체크</button>
+                            <input type="text" name="userId" id="userId" class="shortInput"><button type="button" class="blackBtn" onclick="idCheck();">중복체크</button>
                         </td>
+                       
 
                     </tr>
                     <tr>
@@ -218,7 +220,7 @@
                     <tr>
                         <td class="right"><label for="" class="text">배송지</label></td>
                         <td>
-                            <input type="text" name="userPostcode" id="postcode" class="shortInput"
+                            <input type="text" name="userPostCode" id="postcode" class="shortInput"
                                 placeholder="우편번호"><button class="blackBtn"
                                 onclick="execDaumPostcode(); return false;">우편번호</button>
                         </td>
@@ -267,7 +269,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button id="signup-btn">회원가입</button></td>
+                        <td><button id="signup-btn" disabled>회원가입</button></td>
                     </tr>
                 </table>
             </form>
@@ -297,6 +299,34 @@
                         }
                     }).open();
                 }
+                
+             
+            	function idCheck() {
+            		const idEle = $("#userId");
+            		
+            		console.log("userId : " + idEle.val());
+            		
+            		$.ajax({
+            			url: 'idCheck.me',
+            			type: 'get',
+            			data: {userId: idEle.val()},
+            			success: function(result) {
+            				if(result == "NNY") {
+            					alert("사용 가능한 아이디입니다.");
+            					
+            					$("#signup-btn").removeAttr("disabled");
+            				} else {
+            					alert("이미 사용중인 아이디입니다. 다시 입력해주세요.");
+            					
+            					idEle.focus();
+            				}
+            			},
+            			error: function(err) {
+            				console.log(err);
+            			} 			
+            		});
+                }
+
             </script>
     </body>
 
