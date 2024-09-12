@@ -33,7 +33,7 @@
 
     main {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       grid-column-gap: 20px;
     }
 
@@ -41,7 +41,7 @@
       height: 336px;
       display: flex;
       flex-direction: column;
-      grid-column: 1 / span 12;
+      grid-column: 1 / span 4;
     }
 
     .main-adTextArea {
@@ -161,7 +161,7 @@
     }
 
     .main-GoodsTextArea {
-      grid-column: 1 / span 12;
+      grid-column: 1 / span 4;
       height: 150px;
       font-size: 25px;
       color: #2c2c2c;
@@ -182,19 +182,7 @@
     }
 
     .goods1span3 {
-      grid-column: 1 / span 3;
-    }
-
-    .goods4span3 {
-      grid-column: 4 / span 3;
-    }
-
-    .goods7span3 {
-      grid-column: 7 / span 3;
-    }
-
-    .goods10span3 {
-      grid-column: 10 / span 3;
+      grid-column: 1 / span 1;
     }
 
     .goodsImg {
@@ -573,7 +561,7 @@
             </table>
           </div>
         </button>
-        <button class="goods1span3 goodsArea">
+        <button class="goodsArea">
           <div class="goodsImg" style="background-image: url('../resource/타이틀리스트_62만원.png');"></div>
           <div>
             <table class="goodsInfoTable">
@@ -701,7 +689,7 @@
             </table>
           </div>
         </button>
-        <button class="goods1span3 goodsArea">
+        <button class="goodsArea">
           <div class="goodsImg" style="background-image: url('../resource/일레트릭기타_25만원.PNG');"></div>
           <div>
             <table class="goodsInfoTable">

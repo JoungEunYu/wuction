@@ -6,27 +6,47 @@
 
 	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
 	<resultMap type="Member" id="memberResultSet">
-	<!-- 
-		property = "객체 클래스 파일의 필드변수명"
-		column = "DB의 해당 컬럼 명"
-	 -->
-		<result property="memNo" column="mem_no"/>
-		<result property="memId" column="mem_id"/>
-		<result property="memPwd" column="mem_pwd"/>
-		<result property="name" column="name"/>
-		<result property="birthDate" column="birth_date"/>
-		<result property="email" column="email"/>
-		<result property="joinDate" column="join_date"/>
-		<result property="status" column="status"/>
+		<!-- property = "객체 클래스 파일의 필드변수명" column = "DB의 해당 컬럼 명" -->
+		<result property="memNo" column="mem_no" />
+		<result property="memId" column="mem_id" />
+		<result property="memPwd" column="mem_pwd" />
+		<result property="name" column="name" />
+		<result property="birthDate" column="birth_date" />
+		<result property="postCode" column="POST_CODE" />
+		<result property="fullAddress" column="full_address" />
+		<result property="email" column="email" />
+		<result property="joinDate" column="join_date" />
+		<result property="status" column="status" />
 	</resultMap>
-	
+
 	<select id="selectMember" resultMap="memberResultSet">
 		SELECT *
-			FROM MEMBER
-		WHERE MEM_ID = #{memId} AND MEM_PWD = #{memPwd} AND STATUS = 'Y'
+		FROM MEMBER
+		WHERE MEM_ID = #{memId} AND MEM_PWD = #{memPwd} AND STATUS =
+		'Y'
 	</select>
+
+
+	<insert id="insertMember">
+		INSERT INTO MEMBER (MEM_NO
+		, MEM_ID
+		, MEM_PWD
+		, NAME
+		, BIRTH_DATE
+		, POST_CODE
+		, FULL_ADDRESS
+		, EMAIL)
+		VALUES (2
+		, #{memId}
+		, #{memPwd}
+		, #{name}
+		, #{birthDate}
+		, #{postCode}
+		, #{fullAddress}
+		, #{email})
+	</insert>
 	
-	
-	
-	
+	<select id="selectId" resultMap="memberResultSet">
+	   SELECT * FROM MEMBER WHERE MEM_ID = #{memId} AND STATUS = 'Y'
+	</select>
 </mapper>

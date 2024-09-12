@@ -6,6 +6,8 @@ public class Member {
 	private String memPwd;
 	private String name;
 	private String birthDate;
+	private String postCode;
+	private String fullAddress;
 	private String email;
 	private String joinDate;
 	private String status;
@@ -15,20 +17,32 @@ public class Member {
 		super();
 	}
 
-	public Member(int memNo, String memId, String memPwd, String name, String birthDate, String email, String joinDate,
-			String status) {
+	public Member(int memNo, String memId, String memPwd, String name, String birthDate, String postCode,
+			String fullAddress, String email, String joinDate, String status) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
 		this.memPwd = memPwd;
 		this.name = name;
 		this.birthDate = birthDate;
+		this.postCode = postCode;
+		this.fullAddress = fullAddress;
 		this.email = email;
 		this.joinDate = joinDate;
 		this.status = status;
 	}
 
-
+	public Member(String memId, String memPwd, String name, String birthDate, String postCode,
+			String fullAddress, String email) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.postCode = postCode;
+		this.fullAddress = fullAddress;
+		this.email = email;
+	}
 
 	public int getMemNo() {
 		return memNo;
@@ -97,8 +111,27 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", name=" + name + ", birthDate="
-				+ birthDate + ", email=" + email + ", joinDate=" + joinDate + ", status=" + status + "]";
+				+ birthDate + ", postCode=" + postCode + ", fullAddress=" + fullAddress + ", email=" + email
+				+ ", joinDate=" + joinDate + ", status=" + status + "]";
 	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+
+	public String getFullAddress() {
+		return fullAddress;
+	}
+
+	public void setFullAddress(String fullAddress) {
+		this.fullAddress = fullAddress;
+	}
+
+	
 
 	
 	

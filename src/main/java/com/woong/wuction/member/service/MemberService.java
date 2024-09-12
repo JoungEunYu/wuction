@@ -22,7 +22,7 @@ public interface MemberService {
 	int deleteMember(String id, String pwd);
 	
 	/* 아이디 중복체크 */
-	int idCheck(String id);
+	Member idCheck(Member m);
 	
 	/* 비밀번호 변경 */
 	Member updatePassword(String userId, String userPwd, String newPassword);

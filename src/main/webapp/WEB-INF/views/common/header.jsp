@@ -92,7 +92,17 @@
 <body>
 	<%
 		String contextPath = request.getContextPath();
+		
+		String alertMsg = (String)session.getAttribute("alertMsg");
 	%>
+	
+	<% if (alertMsg != null) { %>
+	<script>
+		alert("<%= alertMsg  %>");
+	</script>
+	<% session.removeAttribute("alertMsg"); %>
+	<% } %>
+	
     <header>
       <div
         style="

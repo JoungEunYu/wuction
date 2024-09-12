@@ -36,8 +36,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(Member m) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		result = mDao.insertMember(sqlSession, m);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
 	}
 
 	@Override
@@ -53,9 +64,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int idCheck(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Member idCheck(Member m) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		Member mem = mDao.idCheck(sqlSession, m);
+		
+		sqlSession.close();
+		
+		return mem;
 	}
 
 	@Override
