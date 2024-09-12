@@ -120,6 +120,9 @@
 
         <main>
         <form action="<%= contextPath %>/posting.pr" method="get">
+        <!-- 세션을 통해서 받아올 회원 정보 -->
+          <input name="userNo" value="${ loginUser.memNo }">
+        
           <div class="posting-btn-area2">
             <button type="submit">등록하기</button>
           </div>
@@ -130,11 +133,11 @@
                 <td>상품 이미지</td>
                 <td>
                   <div class="upload-container">
-                    <input class="hidden-upload" type="file" name="img1" id="hidden-upload-1" />
+                    <input class="hidden-upload" type="file" name="imgPaths" id="hidden-upload-1" />
                     <div class="upload" id="upload-1"><img src="resource/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
-                    <input class="hidden-upload" type="file" name="img2" id="hidden-upload-2" />
+                    <input class="hidden-upload" type="file" name="imgPaths" id="hidden-upload-2" />
                     <div class="upload" id="upload-2"><img src="resource/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
-                    <input class="hidden-upload" type="file" name="img3" id="hidden-upload-3" />
+                    <input class="hidden-upload" type="file" name="imgPaths" id="hidden-upload-3" />
                     <div class="upload" id="upload-3"><img src="resource/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
                   </div>
                   <!-- TODO: 재추가 로직, 삭제 로직 -->
@@ -161,10 +164,10 @@
               <tr>
                 <td style="padding-top: 40px">카테고리</td>
                 <td style="padding-top: 40px">
-                  <select name="category" id="" style="width:280px; height:40px; font-size: 18px;">
-                    <option value="clothes">의류</option>
-                    <option value="electronic">전자제품</option>
-                    <option value="etc">기타 제품</option>
+                  <select name="categoryNo" id="" style="width:280px; height:40px; font-size: 18px;">
+                    <option value="1">의류</option>
+                    <option value="2">전자제품</option>
+                    <option value="3">기타 제품</option>
                   </select>
                 </td>
               </tr>
