@@ -49,4 +49,11 @@
 	<select id="selectId" resultMap="memberResultSet">
 	   SELECT * FROM MEMBER WHERE MEM_ID = #{memId} AND STATUS = 'Y'
 	</select>
+	
+	<update id="updateMember">
+		UPDATE MEMBER
+		   SET NAME = #{name},
+		   		BIRTH_DATE = #{birthDate}
+		WHERE MEM_ID = #{memId}
+	</update>
 </mapper>

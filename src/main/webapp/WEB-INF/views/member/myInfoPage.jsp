@@ -119,6 +119,22 @@
       .infoList {
         font-size: 15px; font-weight: normal;
       }
+      #btnTable {
+        text-align: center;
+        width: 336px;
+        margin-top: 30px;
+      }
+      .myInfoBtn{
+        width: 100px;
+        height: 30px;
+        background-color: #2c2c2c;
+        color: #ffffff;
+        border-radius: 10px;
+      }
+      
+      
+      
+      
     </style>
   </head>
 
@@ -131,13 +147,13 @@
             <div class="cateoryContainer">
               <div></div>
               <div class="clickedCategory">
-                <a href="#">나의 정보</a>
+                <a href="myPage.me">나의 정보</a>
               </div>
               <div class="unclickedCategory">
-                <a href="#">나의 경매 목록</a>
+                <a href="myPostingPage.me">나의 경매 목록</a>
               </div>
               <div class="unclickedCategory">
-                <a href="#">나의 입찰 목록</a>
+                <a href="myBidPage.me">나의 입찰 목록</a>
               </div>
             </div>
 
@@ -146,24 +162,32 @@
                 <text>나의 정보<text>
               </div>
               <div>
-                <table class="infoTable">
-                  <tr>
-                    <td class="infoList">이름</td>
-                    <td><input type="text" class="height-22"></td>
-                  </tr>
-                  <tr>
-                    <td class="infoList">생년월일</td>
-                    <td><input type="text" class="height-22"></td>
-                  </tr>
-                  <tr>
-                    <td class="infoList">주소</td>
-                    <td><input type="text" name="" id="" class="height-22"></td>
-                  </tr>
-                  <tr>
-                    <td class="infoList">비밀번호 확인</td>
-                    <td><input type="text" name="" id="" class="height-22"></td>
-                  </tr>
-                </table>
+                <form action="">
+                  <table class="infoTable" method="post" >
+                    <tr>
+                      <td class="infoList">이름</td>
+                      <td><input type="text" class="height-22" value="${ loginUser.name }"required></td>
+                    </tr>
+                    <tr>
+                      <td class="infoList">생년월일</td>
+                      <td><input type="text" class="height-22" value="${ loginUser.birthDate }"required></td>
+                    </tr>
+                    <tr>
+                      <td class="infoList">주소</td>
+                      <td><input type="text" name="" id="" class="height-22"></td>
+                    </tr>
+                    <tr>
+                      <td class="infoList">비밀번호 확인</td>
+                      <td><input type="password" name="" id="" class="height-22"></td>
+                    </tr>
+                  </table>
+                  <table id="btnTable">
+                    <tr>
+                      <td><button class="myInfoBtn">수정</button></td>
+                        <td><button class="myInfoBtn" id="pwdChange">비밀번호 변경</button></td>
+                    </tr>
+                  </table>
+              </form>
               </div>
             </div>
           </main>
