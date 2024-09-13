@@ -14,6 +14,7 @@
   	<typeAliases>
   		<typeAlias type="com.woong.wuction.member.model.vo.Member" alias="Member"/>
   		<typeAlias type="com.woong.wuction.posting.model.vo.Posting" alias="Posting"/>
+  		<typeAlias type="com.woong.wuction.posting.model.vo.Image" alias="Image"/>
   	</typeAliases>
   	
   	<!-- mybatis에서 연동할 DB정보를 작성 -->
@@ -34,6 +35,7 @@
   	<mappers>
   	  	<mapper resource="/mappers/member-mapper.xml"/>
   	  	<mapper resource="/mappers/posting-mapper.xml"/>
+  	  	<mapper resource="/mappers/image-mapper.xml"/>
   	</mappers>
       
 </configuration>
