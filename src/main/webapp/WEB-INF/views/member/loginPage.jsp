@@ -93,6 +93,7 @@
 	<%
 		String contextPath = request.getContextPath();
 		String uncorrectLogin = (String)request.getAttribute("uncorrectLogin");
+		String savedUserId = (String)request.getAttribute("savedUserId");
 	%>
     <table>
         <tr>
@@ -101,12 +102,13 @@
             <form action="<%= contextPath %>/login.me" method="post">
         <tr>
             <td>
-                <input class="input1" type="text" name="userId" placeholder="아이디"> <br>
+                <input class="input1" type="text" name="userId" value="<%= savedUserId != null ? savedUserId : "" %>"
+           															placeholder="<%= savedUserId == null ? "아이디" : "" %>">
                 <input class="input2" type="password" name="userPwd" placeholder="비밀번호">
                 <div id="idCheck">
                     <div id="idSave">
-                        <input type="checkbox" name="remember" id="remember">
-                        <label for="remember"></label> &nbsp;<text>아이디 저장</text>
+                        <input type="checkbox" name="remember" id="remember" <%= savedUserId != null ? "checked" : "" %>>
+                        <label for="remember"></label> &nbsp;<label for="remember">아이디 저장</label>
                         <% if (uncorrectLogin != null && !uncorrectLogin.isEmpty()) { %>
     						<text id="id-none"><%= uncorrectLogin %></text>
 						<% } %>

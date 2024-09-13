@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="imageMapper">
+
+	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
+	<resultMap type="Image" id="imageResultSet">
+		<!-- property = "객체 클래스 파일의 필드변수명" column = "DB의 해당 컬럼 명" -->
+		<result property="postingNo" column="posting_no"/>
+		<result property="imgFile" column="img_file"/>
+	</resultMap>
+
+	<insert id="insertImgFile">
+		INSERT INTO IMAGE
+			VALUES (#{postingNo}, #{imgFile})
+	</insert>
+</mapper>
