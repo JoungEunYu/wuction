@@ -43,7 +43,7 @@ public class Member {
 		this.fullAddress = fullAddress;
 		this.email = email;
 	}
-
+	
 	public int getMemNo() {
 		return memNo;
 	}

@@ -60,6 +60,7 @@
 </style>
 </head>
 <body>
+<% String contextPath = request.getContextPath(); %>
     <table>
         <tr>
             <th><img src="../resource/Group38.png" alt="" style="margin-bottom: 50px;"></th>
@@ -77,7 +78,7 @@
             <td><text id="green-text">비밀번호가 전송되었습니다.</text></td>
         </tr>
         <tr>
-            <td><button id="login-btn">로그인 하기</button></td>
+            <td><button id="login-btn" onclick="location.href='<%= contextPath %>/loginPage.me'">로그인 하기</button></td>
         </tr>
     </table>
 </body>

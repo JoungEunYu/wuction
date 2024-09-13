@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class myPageController
+ * Servlet implementation class MyPostingPageController
  */
-@WebServlet("/myPage.me")
-public class myPageController extends HttpServlet {
+@WebServlet("/myPostingPage.me")
+public class MyPostingPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public myPageController() {
+    public MyPostingPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class myPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/views/member/myInfoPage.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/member/myPostingPage.jsp").forward(request, response);
 	}
 
 	/**

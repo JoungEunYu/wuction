@@ -148,13 +148,13 @@
             <div class="cateoryContainer">
               <div></div>
               <div class="unclickedCategory">
-                <a href="#">나의 정보</a>
+                <a href="myPage.me">나의 정보</a>
               </div>
               <div class="unclickedCategory">
-                <a href="#">나의 경매 목록</a>
+                <a href="myPostingPage.me">나의 경매 목록</a>
               </div>
               <div class="clickedCategory">
-                <a href="#">나의 입찰 목록</a>
+                <a href="myBidPage.me">나의 입찰 목록</a>
               </div>
             </div>
 

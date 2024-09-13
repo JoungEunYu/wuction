@@ -53,8 +53,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member updateMember(Member m) {
-		// TODO Auto-generated method stub
-		return null;
+Member updateMem = null;
+		
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		int result = mDao.updateMember(sqlSession, m);		
+		if (result > 0) {
+			sqlSession.commit();
+			
+			updateMem = mDao.idCheck(sqlSession, m);
+		}
+		
+		sqlSession.close();
+		
+		return updateMem;
 	}
 
 	@Override
