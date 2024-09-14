@@ -18,15 +18,16 @@
 		<result property="endTime" column="END_TIME"></result>	
 		<result property="startTime" column="START_TIME"></result>	
 		<result property="startPrice" column="START_PRICE"></result>	
+		<result property="bidUnit" column="BID_UNIT"></result>	
 		<result property="status" column="STATUS"></result>	
 	</resultMap>
 	
 	
 	<insert id="insertPosting" useGeneratedKeys="true" keyProperty="postingNo" keyColumn="POSTING_NO">
 		 INSERT INTO POSTING
-        (POSTING_NO, MEM_NO, CATEGORY_NO, PRODUCT_INFO, PRODUCT_NAME, END_TIME, START_TIME, START_PRICE, STATUS)
+        (POSTING_NO, MEM_NO, CATEGORY_NO, PRODUCT_INFO, PRODUCT_NAME, END_TIME, START_TIME, START_PRICE, BID_UNIT, STATUS)
     	VALUES
-        (PNO_SEQ.NEXTVAL, #{memNo}, #{categoryNo}, #{productInfo}, #{productName}, TO_DATE(#{endTime}, 'YYYY-MM-DD"T"HH24:MI'), SYSDATE, #{startPrice}, 'BID')
+        (PNO_SEQ.NEXTVAL, #{memNo}, #{categoryNo}, #{productInfo}, #{productName}, TO_DATE(#{endTime}, 'YYYY-MM-DD"T"HH24:MI'), SYSDATE, #{startPrice}, #{bidUnit}, 'BID')
 
 	</insert>
 	

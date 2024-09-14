@@ -55,11 +55,12 @@ public class PostingController extends HttpServlet {
 	    String productName = multiRequest.getParameter("productName");
 	    String productInfo = multiRequest.getParameter("productInfo");
 	    int startPrice = Integer.parseInt(multiRequest.getParameter("startPrice"));
+	    int bidUnit = Integer.parseInt(multiRequest.getParameter("bidUnit"));
 	    int categoryNo = Integer.parseInt(multiRequest.getParameter("categoryNo"));
 	    String endTime = multiRequest.getParameter("endTime");
 
-	    Posting newPost = new Posting(memNo, categoryNo, productInfo, productName, endTime, startPrice);
-
+	    Posting newPost = new Posting(memNo, categoryNo, productInfo, productName, endTime, startPrice, bidUnit);
+	    System.out.println(newPost);
 	    Posting post = new PostingServiceImpl().insertPosting(newPost);
 
 	    if (post != null) {

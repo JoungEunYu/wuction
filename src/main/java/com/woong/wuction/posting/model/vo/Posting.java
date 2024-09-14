@@ -9,13 +9,14 @@ public class Posting {
 	private String endTime;
 	private String startTime;
 	private int startPrice;
+	private int bidUnit;
 	private String status;
 	
 	public Posting() {}
 	
 	
 	
-	public Posting(int memNo, int categoryNo, String productInfo, String productName, String endTime, int startPrice) {
+	public Posting(int memNo, int categoryNo, String productInfo, String productName, String endTime, int startPrice, int bidUnit) {
 		super();
 		this.memNo = memNo;
 		this.categoryNo = categoryNo;
@@ -23,6 +24,7 @@ public class Posting {
 		this.productName = productName;
 		this.endTime = endTime;
 		this.startPrice = startPrice;
+		this.bidUnit = bidUnit;
 	}
 
 
@@ -113,12 +115,30 @@ public class Posting {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+
+	public int getBidUnit() {
+		return bidUnit;
+	}
+
+
+
+	public void setBidUnit(int bidUnit) {
+		this.bidUnit = bidUnit;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "Posting [postingNo=" + postingNo + ", memNo=" + memNo + ", categoryNo=" + categoryNo + ", productInfo=" + productInfo + ", productName=" + productName + ", endTime=" + endTime + ", startTime=" + startTime + ", startPrice=" + startPrice + ", status="
-				+ status + "]";
+		return "Posting [postingNo=" + postingNo + ", memNo=" + memNo + ", categoryNo=" + categoryNo + ", productInfo="
+				+ productInfo + ", productName=" + productName + ", endTime=" + endTime + ", startTime=" + startTime
+				+ ", startPrice=" + startPrice + ", bidUnit=" + bidUnit + ", status=" + status + "]";
 	}
+
+
+
 	
 	
 	

@@ -165,6 +165,22 @@
 			.fw {
 				font-weight: 900;
 			}
+
+			.cancelMember {
+				background-color: #ff0000;
+				height: 41px;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-bottom: 1px solid #c7c7c7;
+			}
+
+			.cancelMember>a {
+				text-decoration: none;
+				color: #ffffff;
+				font-size: 15px
+			}
 		</style>
 	</head>
 
@@ -184,6 +200,9 @@
 							</div>
 							<div class="unclickedCategory">
 								<a href="myBidPage.me">나의 입찰 목록</a>
+							</div>
+							<div class="cancelMember">
+								<a href="deleteMemberPage.me">탈퇴하기</a>
 							</div>
 						</div>
 

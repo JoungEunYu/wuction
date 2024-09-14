@@ -149,16 +149,6 @@
 	    justify-content: left;
 	}
 	
-	.bid-box p {
-	  font-size: 18px; color: white; font-weight: 900; text-align: left; padding-left: 10px;
-	}
-	
-	.table-title {
-	  color: red; margin-top: 25px; font-weight: 900;
-	}
-	
-	
-	
 	.modal-body table {
 	    width: 100%;
 	    border-collapse: collapse;
@@ -187,6 +177,18 @@
 	.modal-body ul li {
 	    color: #A6A6A6;
 	}
+	
+	.bid-box p {
+	  font-size: 18px; color: white; font-weight: 900; text-align: left; padding-left: 10px;
+	}
+	
+	.table-title {
+	  color: red; margin-top: 25px; font-weight: 900;
+	}
+	
+	
+	
+	
 	
 	.bid-agree {
 	  text-align: right; margin-top: 30px;
