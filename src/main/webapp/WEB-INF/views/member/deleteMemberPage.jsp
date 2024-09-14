@@ -5,6 +5,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
       html,
       body {
@@ -65,21 +66,7 @@
         font-size: 15px
       }
 
-      .clickedCategory {
-        background-color: #2c2c2c;
-        height: 41px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-bottom: 1px solid #c7c7c7;
-      }
-
-      .clickedCategory>a {
-        text-decoration: none;
-        color: #ffffff;
-        font-size: 15px
-      }
+      
 
       .ContentContainer {
         grid-column: 4/span 8
@@ -106,35 +93,30 @@
         align-items: center;
       }
 
-      .myBidTable {
-        width: 100%;
+      .infoTable {
+        height: 180px;
+        width: 336px
       }
 
-      .bg-color {
-        background-color: #F1F1F1;
+      .height-22 {
+        height: 22px;
       }
 
-      .ta-center {
+      .infoList {
+        font-size: 15px; font-weight: normal;
+      }
+      #btnTable {
         text-align: center;
+        width: 336px;
+        padding-bottom: 20px;
       }
-
-      .ta-right {
-        text-align: right;
-      }
-
-      .myBidTable tr>th:first-child {
-        width: 350px;
-        text-align: left;
-        padding-left: 1%;
-      }
-
-      .myBidTable tr>th:nth-child(3) {
-        text-align: right;
-        padding-right: 1%;
-      }
-
-      tr {
-        height: 50px;
+      .cancel-btn{
+        width: 100px;
+        height: 30px;
+        background-color: #ff0000;
+        color: #ffffff;
+        border-radius: 10px;
+        border-style: none;
       }
 
       .cancelMember {
@@ -152,6 +134,10 @@
         color: #ffffff;
         font-size: 15px
       }
+      
+      
+      
+      
     </style>
   </head>
 
@@ -169,7 +155,7 @@
               <div class="unclickedCategory">
                 <a href="myPostingPage.me">나의 경매 목록</a>
               </div>
-              <div class="clickedCategory">
+              <div class="unclickedCategory">
                 <a href="myBidPage.me">나의 입찰 목록</a>
               </div>
               <div class="cancelMember">
@@ -179,36 +165,22 @@
 
             <div class="ContentContainer">
               <div>
-                <text>나의 입찰 목록<text>
+                <text>나의 정보<text>
               </div>
               <div>
-                <table class="myBidTable">
-                  <tr class="bg-color">
-                    <th>상품명</td>
-                    <th>내 입찰 가격</td>
-                    <th>입찰일</td>
-                  </tr>
-                  <tr>
-                    <td>메타몽인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                  <tr>
-                    <td>이브이 인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                  <tr>
-                    <td>잠만보 인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                  <tr>
-                    <td>리자몽인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                </table>
+                <form action="<%= contextPath %>/delete.me" method="post">
+                  <table class="infoTable" method="post" >
+                    <tr>
+                      <td class="infoList">비밀번호 확인</td>
+                      <td><input type="password" class="height-22" required></td>
+                    </tr>
+                  </table>
+                  <table id="btnTable">
+                    <tr>
+                      <td><button class="cancel-btn">탈퇴하기</button></td>
+                    </tr>
+                  </table>
+              </form>
               </div>
             </div>
           </main>
@@ -216,6 +188,7 @@
       </div>
       <div>우측 빈 공간</div>
     </div>
+    
   </body>
 
   </html>

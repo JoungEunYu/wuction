@@ -121,7 +121,7 @@
         <main>
         <form action="<%= contextPath %>/posting.pr" method="post" enctype="multipart/form-data">
         <!-- 세션을 통해서 받아올 회원 정보 -->
-          <input name="userNo" value="${ loginUser.memNo }">
+          <input name="userNo" value="${ loginUser.memNo }" type="hidden">
         
           <div class="posting-btn-area2">
             <button type="submit">등록하기</button>
@@ -158,7 +158,13 @@
               <tr>
                 <td style="padding-top: 40px">시작가</td>
                 <td style="padding-top: 40px">
-                  <input type="number" name="startPrice" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;"/>
+                  <input type="number" min="1000" name="startPrice" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;"/>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-top: 40px">입찰 단위</td>
+                <td style="padding-top: 40px">
+                  <input type="number" step="1000" min="1000" name="bidUnit" id="" style="box-sizing: border-box; width: 100%; height: 40px; font-size: 18px;"/>
                 </td>
               </tr>
               <tr>
@@ -174,7 +180,7 @@
               <tr>
                 <td style="padding-top: 40px">마감시간</td>
                 <td style="padding-top: 40px">
-                  <input type="datetime-local" name="endTime" id="" style="width:280px; height:40px; font-size: 18px;" />
+                  <input type="datetime-local" name="endTime" id="date" style="width:280px; height:40px; font-size: 18px;" />
                 </td>
               </tr>
             </table>
@@ -218,6 +224,17 @@
       upload.addEventListener('click', () => {
         upload.previousElementSibling.click();
       });
+    });
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        // 현재 날짜 가져오기
+        let today = new Date();
+        // 다음 날 계산
+        today.setDate(today.getDate() + 1);
+        // yyyy-mm-dd 형식으로 변환
+        let nextDay = today.toISOString().split('T')[0];
+        // input 요소에 최소값 설정
+        document.getElementById('date').setAttribute('min', nextDay);
     });
   </script>
 </html>

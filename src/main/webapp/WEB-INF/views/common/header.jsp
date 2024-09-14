@@ -112,7 +112,7 @@
           align-items: center;
         "
       >
-        <button class="logo"></button>
+        <button class="logo" onclick="location.href='<%= contextPath %>/mainPage.co'"></button>
       </div>
       <div style="grid-column: 3 / span 7; grid-row: 1 span 1"></div>
       
