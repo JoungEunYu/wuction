@@ -32,14 +32,18 @@ public class InsertMemberController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		String id = request.getParameter("userId");
 		String pw = request.getParameter("userPwd");
 		String name = request.getParameter("userName");
 		String birth = request.getParameter("userBirth");
-		String postCode = request.getParameter("userPostcode");
+		String postCode = request.getParameter("userPostCode");
 		String address = request.getParameter("userAddress");
 		String adDetail = request.getParameter("userAddressDetail");
 		String email = request.getParameter("userEmail");
+		
+		
 		
 		String fullAddress = address + "/" + adDetail;
 

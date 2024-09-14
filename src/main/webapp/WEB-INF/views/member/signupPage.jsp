@@ -35,6 +35,7 @@
                 background-color: black;
                 border: none;
                 border-radius: 10px;
+                cursor: pointer;
             }
 
             .right {
@@ -180,31 +181,42 @@
                             <label for="" class="text">아이디</label>
                         </td>
                         <td>
-                            <input type="text" name="userId" id="userId" class="shortInput"><button type="button" class="blackBtn" onclick="idCheck();">중복체크</button>
+                            <input type="text" name="userId" id="userId" class="shortInput" maxlength="12"><button
+                                type="button" class="blackBtn" onclick="idCheck();">중복체크</button>
                         </td>
-                       
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div style="font-size: 9px; text-align: left;">8 ~ 12자리의 아이디를 입력해주세요. ( * 영문자와 숫자만 입력
+                                가능합니다.)</div>
+                        </td>
+                    </tr>
 
                     </tr>
                     <tr>
                         <td class="right"><label for="" class="text">비밀번호</label></td>
-                        <td><input type="password" name="userPwd" class="input">
+                        <td><input type="password" name="userPwd" class="input" id="userPwd" oninput="pwdCheck();"
+                                maxlength="12">
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <div style="font-size: 12px; text-align: left;">8 ~ 12자리의 비밀번호를 입력해주세요.</div>
+                            <div style="font-size: 9px; text-align: left;">8 ~ 12자리의 비밀번호를 입력해주세요. ( * 영문자와 숫자만 입력
+                                가능합니다.)</div>
                         </td>
                     </tr>
                     <tr>
                         <td class="right"><label for="password" class="text">비밀번호 확인</label></td>
-                        <td><input type="password" name="userPwdCheck" class="input"><br>
+                        <td><input type="password" name="userPwdCheck" class="input" id="userPwdCheck"
+                                oninput="pwdCheck();" maxlength="12"><br>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <div style="font-size: 12px; text-align: left; color: #ff0000;">동일한 비밀번호를 입력해주세요.</div>
+                            <div style="font-size: 12px; text-align: left; color: #ff0000;" id="pwdCheckWarn"></div>
                         </td>
                     </tr>
                     <tr>
@@ -214,7 +226,7 @@
                     </tr>
                     <tr>
                         <td class="right"><label for="" class="text">생년월일 8자리</label></td>
-                        <td><input type="text" name="userBirth" class="input"></td>
+                        <td><input type="text" name="userBirth" class="input" maxlength="8" id="birth"></td>
 
                     </tr>
                     <tr>
@@ -236,7 +248,7 @@
                     </tr>
                     <tr>
                         <td class="right"><label for="" class="text">이메일</label></td>
-                        <td><input type="text" name="userEmail" class="input"></td>
+                        <td><input type="text" name="userEmail" class="input" id="email"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -247,7 +259,8 @@
                         <td>
                             <div style="display: flex; justify-content: space-between;">
                                 <div id="input-container">
-                                    <input type="text" name="authNum" id="input1" class="same-input" placeholder="인증 번호">
+                                    <input type="text" name="authNum" id="input1" class="same-input"
+                                        placeholder="인증 번호">
                                     <input type="text" id="input2" class="same-input" placeholder="남은시간" disabled>
                                 </div>
                                 <button class="blackBtn">인증</button>
@@ -269,7 +282,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button id="signup-btn" disabled>회원가입</button></td>
+                        <td><button id="signup-btn" disabled onclick="return validateForm();">회원가입</button></td>
                     </tr>
                 </table>
             </form>
@@ -299,33 +312,122 @@
                         }
                     }).open();
                 }
-                
-             
-            	function idCheck() {
-            		const idEle = $("#userId");
-            		
-            		console.log("userId : " + idEle.val());
-            		
-            		$.ajax({
-            			url: 'idCheck.me',
-            			type: 'get',
-            			data: {userId: idEle.val()},
-            			success: function(result) {
-            				if(result == "NNY") {
-            					alert("사용 가능한 아이디입니다.");
-            					
-            					$("#signup-btn").removeAttr("disabled");
-            				} else {
-            					alert("이미 사용중인 아이디입니다. 다시 입력해주세요.");
-            					
-            					idEle.focus();
-            				}
-            			},
-            			error: function(err) {
-            				console.log(err);
-            			} 			
-            		});
+
+
+                function idCheck() {
+                    const idEle = $("#userId");
+
+                    console.log("userId : " + idEle.val());
+
+                    $.ajax({
+                        url: 'idCheck.me',
+                        type: 'get',
+                        data: { userId: idEle.val() },
+                        success: function (result) {
+                            if (result == "NNY") {
+                                alert("사용 가능한 아이디입니다.");
+
+                                $("#signup-btn").removeAttr("disabled");
+                            } else {
+                                alert("이미 사용중인 아이디입니다. 다시 입력해주세요.");
+
+                                idEle.focus();
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
                 }
+
+                function pwdCheck() {
+                    const pwd = document.getElementById("userPwd").value;
+                    const pwdCheck = document.getElementById("userPwdCheck").value;
+                    const pwdCheckWarn = document.getElementById("pwdCheckWarn");
+
+                    console.log(pwd);
+                    console.log(pwdCheck);
+
+                    if (pwd == pwdCheck) {
+                        pwdCheckWarn.innerHTML = "비밀번호가 일치합니다.";
+                        pwdCheckWarn.style.color = 'green';
+
+                    } else {
+                        pwdCheckWarn.innerHTML = "동일한 비밀번호를 입력해주세요.";
+                        pwdCheckWarn.style.color = 'red';
+                    }
+
+                }
+
+                function pwdCheckSubmit() {
+                    const pwd = document.getElementById("userPwd").value;
+                    const pwdCheck = document.getElementById("userPwdCheck").value;
+
+                    if (pwd != pwdCheck) {
+                        alert("비밀번호 일치여부를 확인해주세요.");
+                        return false;
+
+                    } else {
+
+                        return true;
+                    }
+                }
+
+                function charCheck() {
+                    const id = document.getElementById("userId").value;
+                    const pwd = document.getElementById("userPwd").value;
+                    const pwdCheck = document.getElementById("userPwdCheck").value;
+                    const birth = document.getElementById("birth").value;                    
+                    const address = document.getElementById("address").value;
+
+                    const idEngNum = /^[a-zA-Z0-9]{8,12}$/;
+                    const pwdEngNum = /^[a-zA-Z0-9]{8,12}$/;
+                    const pwdCheckEngNum = /^[a-zA-Z0-9]{8,12}$/;
+                    const birthNum = /^[0-9]{8}$/;
+
+
+                    if (id && pwd && pwdCheck && birth) {
+
+                        if (!idEngNum.test(id)) {
+                            alert("아이디 형식이 잘못 되었습니다.");
+                            return false;
+                        }
+
+                        if (!pwdEngNum.test(pwd)) {
+                            alert("비밀번호 형식이 잘못 되었습니다.");
+                            return false;
+                        }
+
+                        if (!pwdCheckEngNum.test(pwdCheck)) {
+                            alert("비밀번호 형식이 잘못 되었습니다.");
+                            return false;
+                        }
+
+                        if(!birthNum.test(birth)) {
+                            alert("날짜 형식이 잘못 되었습니다.");
+                            return false;
+                        }
+
+                        return true;
+
+                    } else {
+                        alert("입력하지 않은 사항들이 존재합니다. 입력해주십시오.");
+                        return false;
+                    }
+
+                }
+
+                function validateForm() {
+                    const pwdValid = pwdCheckSubmit();
+                    const charValid = charCheck();
+                    
+                    console.log("Password Check Valid:", pwdValid);
+                    console.log("Character Check Valid:", charValid);
+
+                    
+                    return pwdValid && charValid;
+                }
+
 
             </script>
     </body>
