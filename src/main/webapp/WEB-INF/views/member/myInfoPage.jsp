@@ -1,3 +1,4 @@
+<%@page import="com.woong.wuction.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -170,7 +171,7 @@
             background-color: white;
             border: 2px solid black;
             width: 559px;
-            height: 350px;
+            height: 400px;
             z-index: 1001;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
@@ -257,6 +258,10 @@
 </head>
 
 <body>
+	<%
+	    Member loginUser = (Member) session.getAttribute("loginUser"); // 세션에서 사용자 객체를 가져옴
+	    String sessionUserPwd = loginUser.getMemPwd(); // 사용자 객체에서 비밀번호를 가져옴
+	%>
     <div id="container">
         <div>좌측 빈 공간</div>
         <div id="content">
@@ -344,26 +349,29 @@
         </div>
         <!-- 모달 바디 -->
         <div class="modal-body">
-            <form action="<%= contextPath %>/updatePass.me" method="post">
+            <form action="<%= contextPath %>/updatePwd.me" method="post">
                 <div class="bid-box">
                     <p>비밀번호 변경</p>
                 </div>
                 <table>
                     <tr>
                         <td>현재 비밀번호</td>
-                        <td><input type="password" class="product_modal_input" name="userPwd" required></td>
+                        <td><input type="password" class="product_modal_input" name="userPwd" id="userPwd" required></td>
                     </tr>
                     <tr>
                         <td>변경할 비밀번호</td>
-                        <td><input type="password" class="product_modal_input" name="newPwd" required></td>
+                        <td><input type="password" class="product_modal_input" name="newPwd" id="newPwd" oninput="pwdCheck();" required></td>
                     </tr>
                     <tr>
                       <td>변경할 비밀번호 확인</td>
-                      <td><input type="password" class="product_modal_input" name="newPwdCheck" required></td>
+                      <td>
+                      	<input type="password" class="product_modal_input" name="newPwdCheck" id="newPwdCheck" oninput="pwdCheck();" required>
+                      	<div style="font-size: 12px; text-align: left; color: #ff0000;" id="pwdCheckWarn"></div>
+                      </td>
                   </tr>
                 </table>
                 <div class="bid-btns">
-                  <button type="submit" class="myInfoBtn">변경하기</button>
+                  <button type="submit" class="myInfoBtn" onclick="return validateForm();">변경하기</button>
                 </div>
             </form>
         </div>
@@ -405,6 +413,85 @@
                         }
                     }).open();
                 }
+        
+        function pwdCheck() {
+            const pwd = document.getElementById("newPwd").value;
+            const pwdCheck = document.getElementById("newPwdCheck").value;
+            const pwdCheckWarn = document.getElementById("pwdCheckWarn");
+
+            console.log(pwd);
+            console.log(pwdCheck);
+
+            if (pwd == pwdCheck) {
+                pwdCheckWarn.innerHTML = "비밀번호가 일치합니다.";
+                pwdCheckWarn.style.color = 'green';
+
+            } else {
+                pwdCheckWarn.innerHTML = "동일한 비밀번호를 입력해주세요.";
+                pwdCheckWarn.style.color = 'red';
+            }
+
+        }
+        
+        function pwdCheckSubmit() {
+            const pwd = document.getElementById("newPwd").value;
+            const pwdCheck = document.getElementById("newPwdCheck").value;
+
+            if (pwd != pwdCheck) {
+                alert("비밀번호 일치여부를 확인해주세요.");
+                return false;
+
+            } else {
+
+                return true;
+            }
+        }
+
+        function charCheck() {
+            const newPwd = document.getElementById("newPwd").value;
+           
+            const pwdEngNum = /^[a-zA-Z0-9]{8,12}$/;
+
+
+            if (newPwd) {
+				if (!pwdEngNum.test(newPwd)) {
+                    alert("비밀번호 형식이 잘못 되었습니다.");
+                    return false;
+                }
+                return true;
+
+            } else {
+                alert("입력하지 않은 사항들이 존재합니다. 입력해주십시오.");
+                return false;
+            }
+
+        }
+
+        function sessionPwdCheck() {
+        	const userPwd = document.getElementById("userPwd").value;
+        	
+        	if(userPwd === "<%= sessionUserPwd %>") {
+        		return true;
+        	} else {
+        		alert("현재 비밀번호와 일치하지 않습니다.");
+        		return false;
+        	}
+        	
+        	
+        }
+        
+        function validateForm() {
+        	const sessionPwdValid = sessionPwdCheck();
+            const pwdValid = pwdCheckSubmit();
+            const charValid = charCheck();
+            
+            console.log("Password Check Valid:", pwdValid);
+            console.log("Character Check Valid:", charValid);
+            console.log("Session Check Valid:", sessionPwdValid);
+
+            
+            return pwdValid && charValid && sessionPwdValid;
+        }
     </script>
 </body>
 

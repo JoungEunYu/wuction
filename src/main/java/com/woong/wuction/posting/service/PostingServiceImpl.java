@@ -15,9 +15,9 @@ public class PostingServiceImpl implements PostingService {
 
 		SqlSession sqlSession = MybatisTemplate.getSqlSession();
 		
-		int postingNo = new PostingDao().insertPosting(sqlSession, newPost);
+		int result = new PostingDao().insertPosting(sqlSession, newPost);
 		
-		if(postingNo > 0) {
+		if(result > 0) {
 			sqlSession.commit();
 		}
 		

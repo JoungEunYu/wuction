@@ -25,11 +25,15 @@ public class MemberDao {
 		
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
-
-	public Member emailCheck(SqlSession sqlSession, Member m) {
+  
+  public Member emailCheck(SqlSession sqlSession, Member m) {
 		
 		return sqlSession.selectOne("memberMapper.selectEmail", m);
 	}
-	
+  
+  public int updatePassword(SqlSession sqlSession, Member m) {
+    	
+    return sqlSession.update("memberMapper.updatePassword", m);
+	}
 
 }
