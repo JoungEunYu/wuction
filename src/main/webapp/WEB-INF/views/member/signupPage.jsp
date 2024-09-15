@@ -221,7 +221,7 @@
                     </tr>
                     <tr>
                         <td class="right"><label for="" class="text">이름</label></td>
-                        <td><input type="text" name="userName" class="input"></td>
+                        <td><input type="text" name="userName" class="input" id="userName" maxlength="5"></td>
 
                     </tr>
                     <tr>
@@ -248,11 +248,11 @@
                     </tr>
                     <tr>
                         <td class="right"><label for="" class="text">이메일</label></td>
-                        <td><input type="text" name="userEmail" class="input" id="email"></td>
+                        <td><input type="email" name="userEmail" class="input" id="email"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button class="authBtn">인증 번호 전송</button><button class="authBtn">재전송</button></td>
+                        <td><button class="authBtn" onclick="emailCheck(event);">인증 번호 전송</button><button class="authBtn">재전송</button></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -328,10 +328,12 @@
                                 alert("사용 가능한 아이디입니다.");
 
                                 $("#signup-btn").removeAttr("disabled");
+
                             } else {
                                 alert("이미 사용중인 아이디입니다. 다시 입력해주세요.");
 
                                 idEle.focus();
+                                
                             }
                         },
                         error: function (err) {
@@ -339,6 +341,42 @@
                         }
                     });
                 }
+               
+                
+                function emailCheck(event) {
+                	event.preventDefault();
+                	
+                    const emailEle = $("#email");
+                    const email = emailEle.val();
+
+                    // 이메일 형식 검사
+                    const emailCheck = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+                    if (!emailCheck.test(email)) {
+                        alert("이메일 형식이 올바르지 않습니다.");
+                        emailEle.val(""); // 입력값을 비워줍니다.
+                        emailEle.focus();
+                        return; // 형식이 올바르지 않으면 AJAX 요청을 하지 않습니다.
+                    }
+
+                    // 이메일 형식이 올바르면 서버에 요청을 보냅니다.
+                    $.ajax({
+                        url: 'emailCheck.me', // 실제 URL로 수정
+                        type: 'get',
+                        data: { email: email },
+                        success: function (result) {
+                            if (result === "NNY") {
+                                alert("사용 가능한 이메일입니다.");
+                            } else {
+                                alert("이미 사용중인 이메일입니다. 다시 입력해주세요.");
+                                emailEle.focus();
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+                
 
                 function pwdCheck() {
                     const pwd = document.getElementById("userPwd").value;
@@ -377,16 +415,20 @@
                     const id = document.getElementById("userId").value;
                     const pwd = document.getElementById("userPwd").value;
                     const pwdCheck = document.getElementById("userPwdCheck").value;
+                    const name = document.getElementById("userName").value;
                     const birth = document.getElementById("birth").value;                    
                     const address = document.getElementById("address").value;
+                    const detailAddress = document.getElementById("detailAddress").value;
+                    const email = document.getElementById("email").value;
 
                     const idEngNum = /^[a-zA-Z0-9]{8,12}$/;
                     const pwdEngNum = /^[a-zA-Z0-9]{8,12}$/;
                     const pwdCheckEngNum = /^[a-zA-Z0-9]{8,12}$/;
+                    const nameKo = /^[가-힣]{1,5}$/;
                     const birthNum = /^[0-9]{8}$/;
+                    const emailCheck = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
 
-
-                    if (id && pwd && pwdCheck && birth) {
+                    if (id && pwd && pwdCheck && birth && address && email) {
 
                         if (!idEngNum.test(id)) {
                             alert("아이디 형식이 잘못 되었습니다.");
@@ -407,6 +449,13 @@
                             alert("날짜 형식이 잘못 되었습니다.");
                             return false;
                         }
+                        
+                        if(!nameKo.test(name)) {
+                        	alert("최대 5글자 한글만 입력해주세요.");
+                        	return false;
+                        }
+                        
+                        
 
                         return true;
 
@@ -420,12 +469,14 @@
                 function validateForm() {
                     const pwdValid = pwdCheckSubmit();
                     const charValid = charCheck();
+                  /*   const idValid = idCheck();
+                    const emailValid = emailCheck(); */
                     
                     console.log("Password Check Valid:", pwdValid);
                     console.log("Character Check Valid:", charValid);
 
                     
-                    return pwdValid && charValid;
+                    return pwdValid && charValid /* && idValid && emailValid */;
                 }
 
 

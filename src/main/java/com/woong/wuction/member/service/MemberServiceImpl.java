@@ -102,5 +102,16 @@ Member updateMem = null;
 		
 		return updateMem;
 	}
+	
+	@Override
+	public Member emailCheck(Member m) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		Member mem = mDao.emailCheck(sqlSession, m);
+		
+		sqlSession.close();
+		
+		return mem;
+	}
 
 }

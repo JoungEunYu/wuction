@@ -36,7 +36,7 @@
 		, POST_CODE
 		, FULL_ADDRESS
 		, EMAIL)
-		VALUES (2
+		VALUES (MNO_SEQ.NEXTVAL
 		, #{memId}
 		, #{memPwd}
 		, #{name}
@@ -56,10 +56,15 @@
 		   		BIRTH_DATE = #{birthDate}
 		WHERE MEM_ID = #{memId}
 	</update>
-	
-	<update id="updatePassword">
+  
+  <update id="updatePassword">
 		UPDATE MEMBER
 		   SET MEM_PWD = #{memPwd}
 		WHERE MEM_ID = #{memId} AND STATUS = 'Y'
 	</update>
+  
+  <select id="selectEmail" resultMap="memberResultSet">
+		SELECT * FROM MEMBER WHERE EMAIL = #{email} AND STATUS = 'Y'
+	</select>
+	
 </mapper>

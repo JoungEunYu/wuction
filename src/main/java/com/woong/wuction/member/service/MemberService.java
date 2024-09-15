@@ -26,4 +26,8 @@ public interface MemberService {
 	
 	/* 비밀번호 변경 */
 	Member updatePassword(Member m);
+  
+	/* 이메일 중복체크 */
+	Member emailCheck(Member m);
+
 }
