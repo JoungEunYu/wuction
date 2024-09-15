@@ -91,5 +91,16 @@ Member updateMem = null;
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Member emailCheck(Member m) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		Member mem = mDao.emailCheck(sqlSession, m);
+		
+		sqlSession.close();
+		
+		return mem;
+	}
 
 }
