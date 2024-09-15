@@ -87,9 +87,20 @@ Member updateMem = null;
 	}
 
 	@Override
-	public Member updatePassword(String userId, String userPwd, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+	public Member updatePassword(Member m) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		Member updateMem = null;
+		
+		int result = mDao.updatePassword(sqlSession, m);		
+		if (result > 0) {
+			sqlSession.commit();
+			
+			updateMem = mDao.loginMember(sqlSession, m);
+		}
+		
+		sqlSession.close();
+		
+		return updateMem;
 	}
 
 }

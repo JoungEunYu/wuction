@@ -25,5 +25,5 @@ public interface MemberService {
 	Member idCheck(Member m);
 	
 	/* 비밀번호 변경 */
-	Member updatePassword(String userId, String userPwd, String newPassword);
+	Member updatePassword(Member m);
 }

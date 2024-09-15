@@ -56,4 +56,10 @@
 		   		BIRTH_DATE = #{birthDate}
 		WHERE MEM_ID = #{memId}
 	</update>
+	
+	<update id="updatePassword">
+		UPDATE MEMBER
+		   SET MEM_PWD = #{memPwd}
+		WHERE MEM_ID = #{memId} AND STATUS = 'Y'
+	</update>
 </mapper>
