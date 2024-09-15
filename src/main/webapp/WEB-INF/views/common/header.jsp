@@ -20,6 +20,10 @@
         grid-template-rows: 1fr 1fr;
         grid-column-gap: 20px;
         border-bottom: solid 1px #cecece;
+        position: sticky;
+        top: 0px; /* 도달했을때 고정시킬 위치 */
+        z-index: 10;
+        background-color: white;
       }
 
       .logo {

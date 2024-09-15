@@ -26,4 +26,7 @@ public interface MemberService {
 	
 	/* 비밀번호 변경 */
 	Member updatePassword(String userId, String userPwd, String newPassword);
+	
+	/* 이메일 중복체크 */
+	Member emailCheck(Member m);
 }
