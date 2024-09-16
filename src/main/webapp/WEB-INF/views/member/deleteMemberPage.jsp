@@ -172,7 +172,7 @@
                   <table class="infoTable" method="post" >
                     <tr>
                       <td class="infoList">비밀번호 확인</td>
-                      <td><input type="password" class="height-22" required></td>
+                      <td><input type="password" class="height-22" name="userPwd" required></td>
                     </tr>
                   </table>
                   <table id="btnTable">

@@ -114,4 +114,17 @@ Member updateMem = null;
 		return mem;
 	}
 
+	public int deleteMember(Member m) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		int result = mDao.deleteMember(sqlSession, m);		
+		if (result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
 }
