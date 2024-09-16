@@ -15,13 +15,13 @@ import com.woong.wuction.member.service.MemberServiceImpl;
  * Servlet implementation class emailCheckController
  */
 @WebServlet("/emailCheck.me")
-public class emailCheckController extends HttpServlet {
+public class EmailCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public emailCheckController() {
+    public EmailCheckController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,9 +38,12 @@ public class emailCheckController extends HttpServlet {
 		
 		if(mem != null) {
 			response.getWriter().print("NNN");
+
 		} else {
 			response.getWriter().print("NNY");
 		}
+		
+		
 	}
 
 	/**
