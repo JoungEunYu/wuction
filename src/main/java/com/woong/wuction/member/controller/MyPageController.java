@@ -14,13 +14,13 @@ import com.woong.wuction.member.model.vo.Member;
  * Servlet implementation class myPageController
  */
 @WebServlet("/myPage.me")
-public class myPageController extends HttpServlet {
+public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public myPageController() {
+    public MyPageController() {
         super();
         // TODO Auto-generated constructor stub
     }

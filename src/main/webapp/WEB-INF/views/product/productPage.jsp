@@ -1,5 +1,11 @@
+<%@page import="com.woong.wuction.posting.model.vo.Bid"%>
+<%@page import="com.woong.wuction.posting.model.vo.Image"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.woong.wuction.posting.model.vo.Posting"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -249,6 +255,11 @@
 </style>
 </head>
 <body> 
+<%
+	Posting selectPost = (Posting)request.getAttribute("selectPost");
+	ArrayList<Image> imgList = (ArrayList<Image>)request.getAttribute("imgList");
+	ArrayList<Bid> bidList = (ArrayList<Bid>)request.getAttribute("bidList");
+%>
   <div id="container">
     <div>좌측 빈 공간</div>
     <div id="content">
@@ -261,19 +272,15 @@
                 <!-- 제품 사진 슬라이드 -->
                 <div class="carousel" id="productCarousel">
                   <div class="carousel-inner">
-                      <div class="carousel-item">
-                          <img src="https://i.namu.wiki/i/geGngQMnvmK2g3wuKU4O1uNs8Ix1HXQULk9PrnT57lHOlU4AxL9qsNCYXOOY9DIqPWtXnphq8G6NzCcvzv-ppQ.webp" alt="Image 1">
-                      </div>
-                      <div class="carousel-item">
-                          <img src="https://i.namu.wiki/i/JNKvslt1j4AioYDmWSiZdcJBzwWD2-XibS8JYqMiQcSpF5GSUzYHVdVBsSOPElngPI5CfiAUf0oM3bXXzFr30w.webp" alt="Image 2">
-                      </div>
-                      <div class="carousel-item">
-                          <img src="https://i.namu.wiki/i/Yu5BDHQYknKmChLkS9bgOR0jqfE3ojWF_VgjMJ3nhbmztCFy_qp8pFs0eN4q7sM8FYnCU8Nv89wAPcBPMXo3Sg.webp" alt="Image 3">
-                      </div>
+                     <c:forEach var="image" items="${imgList}">
+        				<div class="carousel-item">
+            				<img src="resources/uploadFiles/${image.imgFile}" alt="Product Image">
+			        	</div>
+			    	</c:forEach>
                   </div>
                   <div class="carousel-controls">
-                      <img id="prevBtn" src="../resource/left.png"></img>
-                      <img id="nextBtn" src="../resource/right.png"></img>
+                      <img id="prevBtn" src="resources/images/left.png"></img>
+                      <img id="nextBtn" src="resources/images/right.png"></img>
                   </div>
               </div>
 
@@ -285,19 +292,19 @@
                 <div class="info-div">
                     <table>
                         <tr>
-                            <td colspan="2">먼작귀</td>
+                            <td colspan="2">${selectPost.productName}</td>
                         </tr>
                         <tr>
                             <td style="font-weight: 600; color:#878787;">시작가</td>
-                            <td style="text-align: right; font-size: 22px; font-weight: 900;">xx원</td>
+                            <td style="text-align: right; font-size: 22px; font-weight: 900;">${ selectPost.startPrice }</td>
                         </tr>
                         <tr>
                             <td style="font-weight: 600; color:#878787;">현재가</td>
-                            <td style="text-align: right; font-size: 24px; font-weight: 900; color: red;">xx원</td>
+                            <td style="text-align: right; font-size: 24px; font-weight: 900; color: red;"></td>
                         </tr>
                         <tr>
                             <td style="font-weight: 600; color:#878787;">입찰 수</td>
-                            <td style="text-align: right; font-size: 20px; font-weight: 900;">x명</td>
+                            <td style="text-align: right; font-size: 20px; font-weight: 900;">${ bidList.size() }명</td>
                         </tr>
                         <tr>
                             <td style="font-weight: 600; color:#878787;">남은 시간</td>
@@ -305,7 +312,7 @@
                         </tr>
                         <tr>
                             <td style="font-size: 18px; font-weight: 900;">입찰 금액 입력</td>
-                            <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" name=""></td>
+                            <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" id="bidPriceInput"></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="vertical-align: bottom; text-align: right;"><button id="openModalBtn" style="border:none;background-color: #ff6262; width: 278px; height: 49px; border-radius: 25px; font-weight: 800; font-size:20px; color: white;">입찰 확정 하기</button></td>
@@ -326,10 +333,15 @@
                               <p>경매 입찰</p>
                           </div>
                           <p class="table-title">입찰 상품</p>
+                          <form action="<%= contextPath %>/bid.bi" method="post">
                           <table>
+                          	<tr>
+                          		<input name="postingNo" value="${ selectPost.postingNo }" hidden>
+                          		<input name="memNo" value="${ loginUser.memNo }" hidden>
+                          	</tr>
                               <tr>
                                   <td>상품명</td>
-                                  <td><input class="product_modal_input" type="text" value="먼작귀" readonly></td>
+                                  <td><input class="product_modal_input" type="text" value="${selectPost.productName}" readonly></td>
                               </tr>
                               <tr>
                                   <td>현재가</td>
@@ -337,11 +349,11 @@
                               </tr>
                               <tr>
                                   <td>입찰 금액</td>
-                                  <td><input class="product_modal_input" type="text" value="5,100,000원" readonly></td>
+                                  <td><input class="product_modal_input" id="modalBidPriceInput" name="bidPrice" type="number" readonly></td>
                               </tr>
                               <tr>
                                   <td>경매마감일자</td>
-                                  <td><input class="product_modal_input" type="text" value="24-08-29 18:00" readonly></td>
+                                  <td><input class="product_modal_input" type="text" value="${selectPost.endTime}" readonly></td>
                               </tr>
                           </table>
                           <ul>
@@ -352,9 +364,10 @@
                           </div>
                           <br>
                           <div class="bid-btns">
-                            <button>창 닫기</button>
-                            <button>입찰하기</button>
+                            <button type="button">창 닫기</button>
+                            <button type="submit">입찰하기</button>
                           </div>
+                          </form>
                       </div>
                   </div>
               </div> 
@@ -364,10 +377,7 @@
             <div class="product-description">
                 <div>제품설명</div>
                 <div>
-                  상품의 설명을 기입하는 공간입니다.  <br>
-                  ex) <br>
-                  귀여운 먼작귀 친구들입니다. <br>
-                  귀엽죠? <br>
+                  ${ selectPost.productInfo }
                 </div>
             </div>
 
@@ -380,21 +390,15 @@
                             <td>입찰 가격</td>
                             <td>입찰일</td>
                         </tr>
-                        <tr>
-                            <td>회원아이디</td>
-                            <td>입찰액</td>
-                            <td>입찰일</td>
-                        </tr>
-                        <tr>
-                            <td>회원아이디</td>
-                            <td>입찰액</td>
-                            <td>입찰일</td>
-                        </tr>
-                        <tr>
-                            <td>회원아이디</td>
-                            <td>입찰액</td>
-                            <td>입찰일</td>
-                        </tr>
+                        
+                        <c:forEach var="bid" items="${bidList}">
+                    		<tr>
+                            	<td>${bid.memNo}</td>
+                            	<td>${bid.bidPrice}</td>
+                            	<td>${bid.bidTime}</td>
+                        	</tr>
+               			</c:forEach>
+                        
                         
                     </table>
                 </div>
@@ -415,10 +419,14 @@
         const openModalBtn = document.getElementById('openModalBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const modalOverlay = document.getElementById('modalOverlay');
+        const bidPriceInput = document.getElementById('bidPriceInput');
+        const modalBidPriceInput = document.getElementById('modalBidPriceInput');
 
         // 모달 열기
         openModalBtn.addEventListener('click', () => {
             modalOverlay.style.display = 'block';
+            
+            modalBidPriceInput.value = bidPriceInput.value;
         });
 
         // 모달 닫기

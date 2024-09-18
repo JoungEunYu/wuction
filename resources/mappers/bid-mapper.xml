@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bidMapper">
+
+	<!-- 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
+	<resultMap type="Bid" id="BidResultSet">
+		<!-- property = "객체 클래스 파일의 필드변수명" column = "DB의 해당 컬럼 명" -->
+		<result property="bidNo" column="bid_no"/>
+		<result property="postingNo" column="posting_no"/>
+		<result property="memNo" column="mem_no"/>
+		<result property="bidPrice" column="bid_price"/>
+		<result property="bidTime" column="bid_time"/>
+	</resultMap>
+
+	<select id="selectBidList" resultMap="BidResultSet">
+		SELECT * 
+			FROM BID
+			JOIN POSTING USING (POSTING_NO)
+		WHERE POSTING_NO = #{postingNo} AND STATUS='BID'
+		ORDER BY BID_TIME DESC
+	</select>
+	
+	<insert id="insertBid">
+		INSERT INTO BID
+			VALUES(BNO_SEQ.NEXTVAL, #{postingNo}, #{memNo}, #{bidPrice}, SYSDATE)
+	</insert>
+</mapper>

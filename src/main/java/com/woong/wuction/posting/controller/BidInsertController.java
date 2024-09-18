@@ -1,4 +1,4 @@
-package com.woong.wuction.member.controller;
+package com.woong.wuction.posting.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.woong.wuction.member.model.vo.Member;
-import com.woong.wuction.member.service.MemberServiceImpl;
+import com.woong.wuction.posting.model.vo.Bid;
+import com.woong.wuction.posting.service.PostingServiceImpl;
 
 /**
- * Servlet implementation class UpdatePwdController
+ * Servlet implementation class BidInsertController
  */
-@WebServlet("/updatePwd.me")
-public class UpdatePwdController extends HttpServlet {
+@WebServlet("/bid.bi")
+public class BidInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdatePwdController() {
+    public BidInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,28 +39,27 @@ public class UpdatePwdController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
+		int postingNo = Integer.parseInt(request.getParameter("postingNo"));
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		long bidPrice = Long.parseLong(request.getParameter("bidPrice"));
 		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		String id = loginUser.getMemId();
-		String newPwd = request.getParameter("newPwd");
+		Bid newBid = new Bid();
+		newBid.setPostingNo(postingNo);
+		newBid.setMemNo(memNo);
+		newBid.setBidPrice(bidPrice);
 		
-		Member m = new Member();
-		m.setMemId(id);
-		m.setMemPwd(newPwd);
+		int result = new PostingServiceImpl().insertBid(newBid);
 		
-		Member updateUser = new MemberServiceImpl().updatePassword(m);
-		
-		if(updateUser != null) {
-			session.setAttribute("loginUser", updateUser);
-			session.setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
-
-			response.sendRedirect(request.getContextPath() + "/myPage.me");
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "입찰이 등록되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/detail.pr");
+			
 		} else {
-			request.setAttribute("errorMsg", "비밀번호 변경에 실패했습니다.");
+			request.setAttribute("errorMsg", "입찰 등록 실패하였습니다.");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
+		
 	}
 
 }

@@ -292,11 +292,11 @@
                             <table class="infoTable" method="post">
                                 <tr>
                                     <td class="infoList">이름</td>
-                                    <td><input type="text" class="height-22" value="${ loginUser.name }" required></td>
+                                    <td><input type="text" class="height-22" value="${ loginUser.name }" name="userName" required></td>
                                 </tr>
                                 <tr>
                                     <td class="infoList">생년월일</td>
-                                    <td><input type="text" class="height-22" value="${ loginUser.birthDate }" required></td>
+                                    <td><input type="text" class="height-22" value="${ loginUser.birthDate }" name="birthdate" required></td>
                                 </tr>
                                 <tr>
                                     <td class="infoList">주소</td>
@@ -313,7 +313,11 @@
                                 </tr>
                                 <tr>
                                     <td class="infoList">이메일</td>
-                                    <td><input type="text" class="height-22" value="${ loginUser.email }" required></td>
+                                    <td><input type="text" class="height-22" value="${ loginUser.email }" name="email" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="infoList">비밀번호 확인</td>
+                                    <td><input type="password" class="height-22" name="memPwd" required></td>
                                 </tr>
                             </table>
                             <table id="btnTable">

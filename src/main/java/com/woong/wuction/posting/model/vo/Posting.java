@@ -8,7 +8,7 @@ public class Posting {
 	private String productName;
 	private String endTime;
 	private String startTime;
-	private int startPrice;
+	private long startPrice;
 	private int bidUnit;
 	private String status;
 	
@@ -16,7 +16,7 @@ public class Posting {
 	
 	
 	
-	public Posting(int memNo, int categoryNo, String productInfo, String productName, String endTime, int startPrice, int bidUnit) {
+	public Posting(int memNo, int categoryNo, String productInfo, String productName, String endTime, long startPrice, int bidUnit) {
 		super();
 		this.memNo = memNo;
 		this.categoryNo = categoryNo;
@@ -100,11 +100,11 @@ public class Posting {
 		this.startTime = startTime;
 	}
 
-	public int getStartPrice() {
+	public long getStartPrice() {
 		return startPrice;
 	}
 
-	public void setStartPrice(int startPrice) {
+	public void setStartPrice(long startPrice) {
 		this.startPrice = startPrice;
 	}
 
