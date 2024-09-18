@@ -10,7 +10,7 @@ public interface MemberService {
 	Member idFind(Member m);
 	
 	/* 비밀번호 찾기 요청 관련 기능 */
-	Member pwdFind(Member m);
+	int pwdFind(Member m);
 	
 	/* 회원가입 요청 관련 기능 */
 	int insertMember(Member m);

@@ -29,9 +29,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member pwdFind(Member m) {
-		// TODO Auto-generated method stub
-		return null;
+	public int pwdFind(Member m) {
+		int result = 0;
+		
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		result = mDao.pwdFind(sqlSession, m);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
 	}
 
 	@Override

@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <style>
 
 	table {
@@ -41,7 +44,7 @@
 	
 	.pwd-btn {
 	    height: 40px;
-	    width: 153px;
+	    width: 150px;
 	    border-radius: 10px;
 	    background-color: white;
 	    font-size: 14px;
@@ -72,14 +75,55 @@
             <td><input id="email" type="text" placeholder= "이메일"></td>
         </tr>
         <tr>
-            <td><button class="pwd-btn">비밀 번호 전송</button><button class="pwd-btn">재전송</button></td>
+            <td><button class="pwd-btn" onclick="newPasswordSubmit();">비밀 번호 전송</button><button class="pwd-btn">재전송</button></td>
         </tr>
         <tr>
-            <td><text id="green-text">비밀번호가 전송되었습니다.</text></td>
+            <td><text id="green-text" hidden>비밀번호가 전송되었습니다.</text></td>
         </tr>
         <tr>
             <td><button id="login-btn" onclick="location.href='<%= contextPath %>/loginPage.me'">로그인 하기</button></td>
         </tr>
     </table>
+    
+    <script>
+    	function newPasswordSubmit() {
+    		const email = document.getElementById("email").value;
+    		
+    		$.ajax({
+    			url: 'emailCheck.me',
+    			type: 'get',
+    			data: {
+    				email : email
+    			},
+    			success: function(result) {
+    				if(result === 'NNN') {
+    					$("#green-text").removeAttr("hidden");
+    					
+    					$.ajax({
+    						url: 'pwdFind.me',
+    						type: 'post',
+    						data: {
+    							email : email
+    						},
+    						success: function(response) {
+    							console.log("비밀번호 전송 완료");
+    						},
+    						error: function(err) {
+    							console.log(err);
+    						}
+    					});
+    					
+    				} else {
+    					alert("존재하지 않는 이메일입니다. 다시 입력해주세요.");
+    					email.focus();
+    				}
+    			}, 
+    			error: function(err) {
+    				console.log(err);
+    			}
+    		});
+    	}
+    	
+    </script>
 </body>
 </html>

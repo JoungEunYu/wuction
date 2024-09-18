@@ -73,4 +73,11 @@
 		WHERE MEM_ID = #{memId} AND MEM_PWD = #{memPwd} AND STATUS = 'Y'
 	</update>
 	
+	
+	<update id="pwdFindMember">
+		UPDATE MEMBER
+			SET MEM_PWD = #{memPwd}
+		WHERE EMAIL = #{email} AND STATUS = 'Y'
+	</update>
+		
 </mapper>

@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.woong.wuction.member.model.vo.Member;
+import com.woong.wuction.member.service.MemberServiceImpl;
+
 /**
- * Servlet implementation class IdFindPageController
+ * Servlet implementation class IdFindController
  */
-@WebServlet("/idFindPage.me")
-public class IdFindPageController extends HttpServlet {
+@WebServlet("/idFind.me")
+public class IdFindController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IdFindPageController() {
+    public IdFindController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +29,17 @@ public class IdFindPageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/views/member/idFindPage.jsp").forward(request, response);
-	
+		String email = request.getParameter("email");
+		Member m = new Member();
+		m.setEmail(email);
+		Member mem = new MemberServiceImpl().emailCheck(m);
+		
+		if(mem != null) {
+			response.getWriter().print("NNN:" + mem.getMemId());
+		} else {
+			response.getWriter().print("NNY");
+		}
+		
 	}
 
 	/**
