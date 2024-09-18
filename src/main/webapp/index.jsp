@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<button onclick="location.href='detail.pr'">test</button>
 	<%@ include file="WEB-INF/views/common/mainPage.jsp" %>
 </body>
 </html>

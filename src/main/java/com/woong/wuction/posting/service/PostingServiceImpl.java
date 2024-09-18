@@ -6,16 +6,19 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.woong.wuction.common.MybatisTemplate;
 import com.woong.wuction.posting.model.dao.PostingDao;
+import com.woong.wuction.posting.model.vo.Bid;
 import com.woong.wuction.posting.model.vo.Image;
 import com.woong.wuction.posting.model.vo.Posting;
 
 public class PostingServiceImpl implements PostingService {
+	private PostingDao pDao = new PostingDao();
+	
 	@Override
 	public Posting insertPosting(Posting newPost) {
 
 		SqlSession sqlSession = MybatisTemplate.getSqlSession();
 		
-		int result = new PostingDao().insertPosting(sqlSession, newPost);
+		int result = pDao.insertPosting(sqlSession, newPost);
 		
 		if(result > 0) {
 			sqlSession.commit();
@@ -29,7 +32,7 @@ public class PostingServiceImpl implements PostingService {
 	public void insertImgFile(Image img) {
 		SqlSession sqlSession = MybatisTemplate.getSqlSession();
 		
-		int result = new PostingDao().insertImgFile(sqlSession, img);
+		int result = pDao.insertImgFile(sqlSession, img);
 		
 		if(result > 0) {
 			sqlSession.commit();
@@ -47,8 +50,49 @@ public class PostingServiceImpl implements PostingService {
 
 	@Override
 	public Posting selectPosting(Posting selectPost) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		Posting p = pDao.selectPosting(sqlSession, selectPost);
+		
+		sqlSession.close();
+		
+		return p;
+	}
+
+	@Override
+	public ArrayList<Image> selectImgList(Posting selectPost) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		ArrayList<Image> imgList = pDao.selectImgList(sqlSession, selectPost);
+		
+		sqlSession.close();
+		
+		return imgList;
+	}
+
+	@Override
+	public ArrayList<Bid> selectBidList(Posting selectPost) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		ArrayList<Bid> bidList = pDao.selectBidList(sqlSession, selectPost);
+		
+		sqlSession.close();
+		
+		return bidList;
+	}
+
+	public int insertBid(Bid newBid) {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		int result = pDao.insertBid(sqlSession, newBid);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		
+		return result;
 	}
 
 	

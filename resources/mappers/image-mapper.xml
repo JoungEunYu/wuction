@@ -15,4 +15,10 @@
 		INSERT INTO IMAGE
 			VALUES (#{postingNo}, #{imgFile})
 	</insert>
+	
+	<select id="selectImgList" resultMap="imageResultSet">
+		SELECT * 
+			FROM IMAGE
+		WHERE POSTING_NO = #{postingNo}
+	</select>
 </mapper>

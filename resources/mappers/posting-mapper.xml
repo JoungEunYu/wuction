@@ -32,10 +32,9 @@
 	</insert>
 	
 	<select id="selectPosting" resultMap="PostingResultSet">
-		SELECT POSTING_NO
-    		FROM POSTING
-    	WHERE POSTING_NO = PNO_SEQ.CURRVAL
-			
+		SELECT * 
+			FROM POSTING
+		WHERE POSTING_NO = #{postingNo}
 	</select>
 	
 	

@@ -1,7 +1,10 @@
 package com.woong.wuction.posting.model.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 
+import com.woong.wuction.posting.model.vo.Bid;
 import com.woong.wuction.posting.model.vo.Image;
 import com.woong.wuction.posting.model.vo.Posting;
 
@@ -13,6 +16,22 @@ public class PostingDao {
 
 	public int insertImgFile(SqlSession sqlSession, Image img) {
 		return sqlSession.insert("imageMapper.insertImgFile", img);
+	}
+
+	public Posting selectPosting(SqlSession sqlSession, Posting selectPost) {
+		return sqlSession.selectOne("postingMapper.selectPosting", selectPost);
+	}
+
+	public ArrayList<Image> selectImgList(SqlSession sqlSession, Posting selectPost) {
+		return (ArrayList)sqlSession.selectList("imageMapper.selectImgList", selectPost);
+	}
+
+	public ArrayList<Bid> selectBidList(SqlSession sqlSession, Posting selectPost) {
+		return (ArrayList)sqlSession.selectList("bidMapper.selectBidList", selectPost);
+	}
+
+	public int insertBid(SqlSession sqlSession, Bid newBid) {
+		return sqlSession.insert("bidMapper.insertBid", newBid);
 	}
 
 }

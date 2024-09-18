@@ -19,7 +19,7 @@ public interface MemberService {
 	Member updateMember(Member m);
 	
 	/* 탈퇴 요청 관련 기능 */
-	int deleteMember(String id, String pwd);
+	int deleteMember(Member m);
 	
 	/* 아이디 중복체크 */
 	Member idCheck(Member m);

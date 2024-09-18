@@ -70,12 +70,6 @@ Member updateMem = null;
 	}
 
 	@Override
-	public int deleteMember(String id, String pwd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public Member idCheck(Member m) {
 		SqlSession sqlSession = MybatisTemplate.getSqlSession();
 		

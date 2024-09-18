@@ -42,7 +42,9 @@ public class PostingController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // 설정
+		request.setCharacterEncoding("UTF-8");
+		
+		// 설정
 	    int maxSize = 10 * 1024 * 1024; // 최대 파일 크기 10MB
 	    HttpSession session = request.getSession();
 	    String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
@@ -54,7 +56,7 @@ public class PostingController extends HttpServlet {
 	    int memNo = Integer.parseInt(multiRequest.getParameter("userNo"));
 	    String productName = multiRequest.getParameter("productName");
 	    String productInfo = multiRequest.getParameter("productInfo");
-	    int startPrice = Integer.parseInt(multiRequest.getParameter("startPrice"));
+	    long startPrice = Long.parseLong(multiRequest.getParameter("startPrice"));
 	    int bidUnit = Integer.parseInt(multiRequest.getParameter("bidUnit"));
 	    int categoryNo = Integer.parseInt(multiRequest.getParameter("categoryNo"));
 	    String endTime = multiRequest.getParameter("endTime");
