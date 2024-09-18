@@ -473,7 +473,7 @@ input[id="remember"]:checked+label::after {
 			const birthNum = /^[0-9]{8}$/;
 
 
-			if (id && pwd && pwdCheck && birth && address && email && authCode) {
+			if (id && pwd && pwdCheck && birth && address && email && authCode && remember.checked) {
 
 				if (!idEngNum.test(id)) {
 					alert("아이디 형식이 잘못 되었습니다.");

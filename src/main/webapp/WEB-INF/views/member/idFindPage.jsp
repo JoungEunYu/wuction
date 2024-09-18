@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
 
 	table {
@@ -68,7 +70,7 @@
 	    cursor: pointer;
 	}
 	
-	#input1 {
+	#authCode {
 	    border-right: none;
 	    width: 135px;
 	    padding-left: 10px;
@@ -90,11 +92,12 @@
 	}
 	.auth-btn {
 	    height: 40px;
-	    width: 153px;
+	    width: 148px;
 	    border-radius: 10px;
 	    background-color: white;
 	    font-size: 14px;
 	    font-weight: 600;
+	    cursor: pointer;
 	}
 	
 	.auth-btn:first-child {
@@ -132,23 +135,23 @@
             <td><input id="email" type="text" placeholder="이메일"></td>
         </tr>
         <tr>
-            <td><button class="auth-btn">인증 번호 전송</button><button class="auth-btn">재전송</button></td>
+            <td><button class="auth-btn" onclick="idFindFromEmail();">인증 번호 전송</button><button class="auth-btn">재전송</button></td>
         </tr>
         <tr>
             <td>
                 <div style="display: flex; justify-content: space-between;">
                     <div id="input-container">
-                        <input type="text" id="input1" class="same-input" placeholder="인증 번호">
+                        <input type="text" id="authCode" class="same-input" placeholder="인증 번호">
                         <input type="text" id="input2" class="same-input" placeholder="남은시간">
                     </div>
-                    <button class="blackBtn">인증</button>
+                    <button class="blackBtn" onclick="authCodeCheck();">인증</button>
                 </div>
             </td>
         </tr>
         <tr>
             <td>
-                <div id="your-id-container">
-                    <text id="your-id1">당신의 아이디</text><text id="your-id2">wjddmsdb113</text>
+                <div id="your-id-container" hidden>
+                    <div><text id="your-id1">당신의 아이디</text><text id="your-id2"></text></div>
                 </div>
             </td>
         </tr>
@@ -156,5 +159,86 @@
             <td><button id="id-find-btn" type="submit"><a href="<%= contextPath %>/loginPage.me">로그인 하기</a></button></td>
         </tr>
     </table>
+    
+    <script>
+    
+    function idFindFromEmail() {
+    	const emailEle = $("#email");
+    	const email = emailEle.val();
+    	
+    	$.ajax ({
+    		url: 'emailCheck.me',
+    		type: 'get',
+    		data: {
+    			email: email
+    		},
+    		success: function(result) {
+    			if(result === 'NNN') {
+    				alert("인증번호를 전송했습니다.");
+    				
+    				$.ajax({
+    					url: 'sendAuthCode.me',
+    					type: 'post',
+    					data: {email: email},
+    					success: function(response) {
+    						console.log("인증 코드 전송 완료");
+    					},
+    					error: function(err) {
+    						console.log(err);
+    					}
+    				});
+		
+    			} else {
+    				alert("존재하지 않는 이메일입니다. 다시 입력해주세요.");
+    				emailEle.focus();
+    			}
+    		},
+    		error: function(err) {
+    			console.log(err);
+    		}
+    	});
+    }
+    
+    function authCodeCheck() {
+    	const authCode = document.getElementById('authCode').value;
+    	const email = document.getElementById('email').value;
+    	
+    	$.ajax({
+    		url: 'verifyCode.me',
+    		type: 'post',
+    		data: {authCode : authCode},
+    		success: function(result) {
+    			if (result === 'NNY') {
+    				alert("인증번호 인증에 성공하셨습니다.");
+    				
+    				$.ajax({
+    					url: 'idFind.me',
+    					type: 'get',
+    					data: {email: email},
+    					success: function(result) {
+    						if (result.startsWith('NNN')) {
+    							document.getElementById("your-id-container").hidden = false;
+    							
+    							 // memId를 파싱하여 텍스트에 설정
+    							const memId = result.split(":")[1];
+    				            document.getElementById("your-id2").textContent = memId;
+    						} else {
+    							alert("오류가 발생했습니다. 다시 시도해주세요");
+    						}
+    					}
+    				})
+    					
+    				
+    			} else {
+    				alert("인증번호 인증에 실패하셨습니다. 다시 시도해주십시오.");
+    			}
+    		},
+    		error: function(err) {
+    			console.log(err);
+    		}
+    	});
+    }
+    
+    </script>
 </body>
 </html>
