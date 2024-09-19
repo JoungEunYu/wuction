@@ -66,6 +66,7 @@
 	    transition: opacity 1s;
 	}
 	
+	
 	.carousel img {
 	    width: 100%;
 	    height: 100%;
@@ -259,6 +260,17 @@
 	Posting selectPost = (Posting)request.getAttribute("selectPost");
 	ArrayList<Image> imgList = (ArrayList<Image>)request.getAttribute("imgList");
 	ArrayList<Bid> bidList = (ArrayList<Bid>)request.getAttribute("bidList");
+	
+	
+	long max = 0;
+    if (bidList != null && !bidList.isEmpty()) {
+        max = bidList.get(0).getBidPrice();
+        for (Bid bid : bidList) {
+            if (max < bid.getBidPrice()) {
+                max = bid.getBidPrice();
+            }
+        }
+    }
 %>
   <div id="container">
     <div>좌측 빈 공간</div>
@@ -300,15 +312,15 @@
                         </tr>
                         <tr>
                             <td style="font-weight: 600; color:#878787;">현재가</td>
-                            <td style="text-align: right; font-size: 24px; font-weight: 900; color: red;"></td>
+                            <td style="text-align: right; font-size: 24px; font-weight: 900; color: red;"><%= max %></td>
                         </tr>
                         <tr>
                             <td style="font-weight: 600; color:#878787;">입찰 수</td>
                             <td style="text-align: right; font-size: 20px; font-weight: 900;">${ bidList.size() }명</td>
                         </tr>
                         <tr>
-                            <td style="font-weight: 600; color:#878787;">남은 시간</td>
-                            <td style="text-align: right; font-size: 20px; font-weight: 900;">x일 x시간 x분 x초</td>
+                            <td style="font-weight: 600; color:#878787;">경매마감일자</td>
+                            <td style="text-align: right; font-size: 20px; font-weight: 900;">${ selectPost.endTime }</td>
                         </tr>
                         <tr>
                             <td style="font-size: 18px; font-weight: 900;">입찰 금액 입력</td>
@@ -345,7 +357,7 @@
                               </tr>
                               <tr>
                                   <td>현재가</td>
-                                  <td><input class="product_modal_input" type="text" value="5,000,000원" readonly></td>
+                                  <td><input class="product_modal_input" type="text" value="<%= max %>" readonly></td>
                               </tr>
                               <tr>
                                   <td>입찰 금액</td>
@@ -441,7 +453,6 @@
             }
         });
 
-        // 
         const carousel = document.querySelector('.carousel-inner');
         const items = document.querySelectorAll('.carousel-item');
         const totalItems = items.length;
@@ -449,7 +460,7 @@
 
         function updateCarousel() {
             const offset = -currentIndex * 100;
-            carousel.style.transform = `translateX(${offset}%)`;
+            carousel.style.transform = 'translateX('+offset+'%)';
         }
 
         document.getElementById('prevBtn').addEventListener('click', () => {
@@ -461,6 +472,7 @@
             currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
             updateCarousel();
         });
+
     </script>
 </body>
 </html>

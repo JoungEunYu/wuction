@@ -47,10 +47,9 @@
 	</insert>
 
 	<select id="selectPosting" resultMap="PostingResultSet">
-		SELECT *
-		FROM POSTING
-		WHERE
-		POSTING_NO = #{postingNo}
+		SELECT POSTING_NO, MEM_NO, CATEGORY_NO, PRODUCT_INFO, PRODUCT_NAME, END_TIME, START_TIME, START_PRICE, BID_UNIT, STATUS
+			FROM POSTING
+		WHERE POSTING_NO = #{postingNo} AND STATUS = 'BID'
 	</select>
 
 	<select id="selectPostingList"

@@ -49,7 +49,6 @@ public class ProductPageController extends HttpServlet {
 		ArrayList<Bid> bidList = new PostingServiceImpl().selectBidList(p);
 		System.out.println("게시물 입찰 조회 : " + bidList);
 		
-		
 		if(selectPost != null && imgList != null && bidList != null) {
 			// 해당 번호에 해당하는 게시물이 조회가 되었을 때
 			request.setAttribute("selectPost", selectPost);

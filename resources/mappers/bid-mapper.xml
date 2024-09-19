@@ -15,10 +15,11 @@
 	</resultMap>
 
 	<select id="selectBidList" resultMap="BidResultSet">
-		SELECT * 
-			FROM BID
-			JOIN POSTING USING (POSTING_NO)
-		WHERE POSTING_NO = #{postingNo} AND STATUS='BID'
+		SELECT MEM_ID "MEM_NO", BID_PRICE, BID_TIME
+		FROM BID
+		    JOIN MEMBER m USING (MEM_NO)
+		    JOIN POSTING p USING (POSTING_NO)
+		WHERE POSTING_NO = 1 AND p.STATUS='BID' AND m.STATUS = 'Y'
 		ORDER BY BID_TIME DESC
 	</select>
 	
