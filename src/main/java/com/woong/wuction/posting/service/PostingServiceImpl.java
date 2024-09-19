@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.woong.wuction.common.MybatisTemplate;
 import com.woong.wuction.posting.model.dao.PostingDao;
+import com.woong.wuction.posting.model.dto.MainPagePosting;
 import com.woong.wuction.posting.model.vo.Bid;
 import com.woong.wuction.posting.model.vo.Image;
 import com.woong.wuction.posting.model.vo.Posting;
@@ -43,9 +44,14 @@ public class PostingServiceImpl implements PostingService {
 	}
 
 	@Override
-	public ArrayList<Posting> selectPostingList() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<MainPagePosting> loadPostingList() {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		ArrayList<MainPagePosting> pArr = pDao.selectPostingList(sqlSession);
+		
+		sqlSession.close();
+		
+		return pArr;
 	}
 
 	@Override
