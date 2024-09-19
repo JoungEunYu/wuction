@@ -3,7 +3,7 @@ package com.woong.wuction.posting.model.vo;
 public class Bid {
 	private int bidNo;
 	private int postingNo;
-	private int memNo;
+	private String memNo;	// 추가할때는 회원번호, 조회할때는 회원아이디
 	private long bidPrice;
 	private String bidTime;
 	
@@ -11,7 +11,7 @@ public class Bid {
 		super();
 	}
 
-	public Bid(int bidNo, int postingNo, int memNo, long bidPrice, String bidTime) {
+	public Bid(int bidNo, int postingNo, String memNo, long bidPrice, String bidTime) {
 		super();
 		this.bidNo = bidNo;
 		this.postingNo = postingNo;
@@ -36,11 +36,11 @@ public class Bid {
 		this.postingNo = postingNo;
 	}
 
-	public int getMemNo() {
+	public String getMemNo() {
 		return memNo;
 	}
 
-	public void setMemNo(int memNo) {
+	public void setMemNo(String memNo) {
 		this.memNo = memNo;
 	}
 

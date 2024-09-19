@@ -67,6 +67,7 @@ public class PostingController extends HttpServlet {
 
 	    if (post != null) {
 	        int postingNo = post.getPostingNo();
+	        int imgNo = 1;
 	        
 	        // 파일 업로드 처리
 	        Enumeration<String> files = multiRequest.getFileNames();
@@ -75,9 +76,10 @@ public class PostingController extends HttpServlet {
 	            String fileName = multiRequest.getFilesystemName(name);
 
 	            if (fileName != null) {
-	                Image img = new Image(postingNo, fileName);
+	                Image img = new Image(imgNo, postingNo, fileName);
 	                System.out.println(img);
 	                new PostingServiceImpl().insertImgFile(img);
+	                imgNo++;
 	            }
 	        }
 	        

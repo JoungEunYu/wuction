@@ -13,7 +13,7 @@
 
 	<insert id="insertImgFile">
 		INSERT INTO IMAGE
-			VALUES (#{postingNo}, #{imgFile})
+			VALUES (#{imgNo}, #{postingNo}, #{imgFile})
 	</insert>
 	
 	<select id="selectImgList" resultMap="imageResultSet">

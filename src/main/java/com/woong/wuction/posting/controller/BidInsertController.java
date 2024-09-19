@@ -40,7 +40,7 @@ public class BidInsertController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int postingNo = Integer.parseInt(request.getParameter("postingNo"));
-		int memNo = Integer.parseInt(request.getParameter("memNo"));
+		String memNo = request.getParameter("memNo");
 		long bidPrice = Long.parseLong(request.getParameter("bidPrice"));
 		
 		Bid newBid = new Bid();
