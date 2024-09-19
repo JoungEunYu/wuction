@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     html,
     body {
@@ -226,6 +228,13 @@
       color:#2c2c2c;
     }
 
+    .goodsContainer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 20px;
+      grid-column: 1 / 5;
+    }
+
 
   </style>
 </head>
@@ -432,391 +441,9 @@
           현재 상품
         </div>
         <div style="height: 45px"></div>
-        <button class="goods1span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/뉴발란스327_43만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  뉴발란스 327
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  430,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>15명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-12-30</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods4span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/위아이스txt와차_500만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  9천리 자전거
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  5,000,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>5명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-11-29</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods7span3 goodsArea">
-          <div class="goodsImg" style="
-                background-image: url('../resource/조건웅실착셔츠_59만.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  조건웅 실착 셔츠
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  590,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>14명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-10-28</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods10span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/제네시스DH_1천7백만.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  제네시스 DH
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  17,000,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>4명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-09-27</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/타이틀리스트_62만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  타이틀리스트
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  620,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>13명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-08-26</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods4span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/Cp컴퍼니패딩_62만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  씨피 컴퍼니 패딩
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  680,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>3명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-07-25</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods7span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/소니a6400_110만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  소니 a6400
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  1,100,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>22명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-06-24</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods10span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/원피스피규어모음_100만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  원피스 피규어 모음
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  1,000,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>11명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-05-23</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/일레트릭기타_25만원.PNG');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  스콰이어 일렉기타
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  250,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>25명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-04-22</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods4span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/디올빈티지펜던트_50만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  디올 빈티지 펜던트
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  500,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>23명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-03-21</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods7span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/엔틱빈티지가구_68만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  엔틱 빈티지 가구
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  570,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>1명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-02-20</td>
-              </tr>
-            </table>
-          </div>
-        </button>
-        <button class="goods10span3 goodsArea">
-          <div class="goodsImg" style="background-image: url('../resource/불가비골든링_100만원.png');"></div>
-          <div>
-            <table class="goodsInfoTable">
-              <tr>
-                <td colspan="2">
-                  불가비 골든링
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  현재가
-                </td>
-                <td>
-                  1,000,000원
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  입찰자수
-                </td>
-                <td>29명</td>
-              </tr>
-              <tr>
-                <td>
-                  경매기간
-                </td>
-                <td>2024-01-19</td>
-              </tr>
-            </table>
-          </div>
-        </button>
+        <div class="goodsContainer">
+	       
+        </div>
       </main>
       <%@ include file="footer.jsp" %>
     </div>
@@ -831,6 +458,59 @@
       const totalSlides = slides.children.length;
       currentSlide = (currentSlide + step + totalSlides) % totalSlides;
       slides.style.transform = "translateX(-" + currentSlide * 100 + "%)";
+    }
+
+    window.onload = function() {
+        loadPosting();
+    };
+    
+    function loadPosting() {
+        $.ajax({
+            url: 'loadPosting.pr',
+            method: 'GET',
+            dataType: 'json',
+            success: function(posts) {
+                const containers = document.getElementsByClassName("goodsContainer");
+                if (containers.length === 0) {
+                    console.error("No elements with class 'goodsContainer' found.");
+                    return;
+                }
+                const container = containers[0]; // 첫 번째 컨테이너를 선택
+                let htmlContent = ''; // HTML 문자열을 저장할 변수
+
+                posts.forEach(function(post, index) {
+                    const buttonClass = index === 0 ? 'goods1span3 goodsArea' : 'goodsArea';
+                    const postHTML = 
+                        '<button class="' + buttonClass + '">' +
+                            '<div class="goodsImg" style="background-image: url(\'resources/uploadFiles/' + post.imgFile + '\');"></div>' +
+                            '<div>' +
+                                '<table class="goodsInfoTable">' +
+                                    '<tr>' +
+                                        '<td colspan="2">' + post.productName + '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td>현재가</td>' +
+                                        '<td>' + post.maxPrice + '원</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td>입찰자수</td>' +
+                                        '<td>' + post.bidCount + '명</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td>경매기간</td>' +
+                                        '<td>' + post.endTime + '</td>' +
+                                    '</tr>' +
+                                '</table>' +
+                            '</div>' +
+                        '</button>';
+                    htmlContent += postHTML; // 모든 게시물의 HTML을 누적
+                });
+                container.innerHTML = htmlContent; // 모든 HTML을 한 번에 추가
+            },
+            error: function(err) {
+                console.error("파일 로드에 실패했습니다.", err);
+            }
+        });
     }
   </script>
 </body>
