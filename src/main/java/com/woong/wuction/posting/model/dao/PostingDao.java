@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.woong.wuction.posting.model.dto.MainPagePosting;
 import com.woong.wuction.posting.model.vo.Bid;
 import com.woong.wuction.posting.model.vo.Image;
 import com.woong.wuction.posting.model.vo.Posting;
@@ -32,6 +33,11 @@ public class PostingDao {
 
 	public int insertBid(SqlSession sqlSession, Bid newBid) {
 		return sqlSession.insert("bidMapper.insertBid", newBid);
+	}
+
+	public ArrayList<MainPagePosting> selectPostingList(SqlSession sqlSession) {
+		
+		return (ArrayList)sqlSession.selectList("postingMapper.selectPostingList");
 	}
 
 }
