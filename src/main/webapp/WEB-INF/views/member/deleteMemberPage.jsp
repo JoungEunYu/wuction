@@ -143,7 +143,7 @@
 
   <body>
     <div id="container">
-      <div>좌측 빈 공간</div>
+      <div></div>
       <div id="content">
         <%@ include file="../common/header.jsp" %>
           <main>
@@ -186,7 +186,7 @@
           </main>
           <%@ include file="../common/footer.jsp" %>
       </div>
-      <div>우측 빈 공간</div>
+      <div></div>
     </div>
     
   </body>

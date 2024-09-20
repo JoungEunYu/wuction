@@ -240,7 +240,7 @@
 </head>
 <body>
   <div class="container">
-    <div>좌측 빈 공간</div>
+    <div></div>
     <div class="content">
       <%@ include file="header.jsp" %>
       <main>
@@ -447,7 +447,7 @@
       </main>
       <%@ include file="footer.jsp" %>
     </div>
-    <div>우측 빈 공간</div>
+    <div> </div>
   </div>
 
   <script>
