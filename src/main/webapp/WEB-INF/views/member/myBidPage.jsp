@@ -188,26 +188,13 @@
                     <th>내 입찰 가격</td>
                     <th>입찰일</td>
                   </tr>
-                  <tr>
-                    <td>메타몽인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                  <tr>
-                    <td>이브이 인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                  <tr>
-                    <td>잠만보 인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
-                  <tr>
-                    <td>리자몽인형</td>
-                    <td class="ta-center">5,000,000</td>
-                    <td class="ta-right">2024-12-30</td>
-                  </tr>
+                  <c:forEach var="p" items="${list}">
+	                  <tr>
+	                    <td>${ p.productName }</td>
+	                    <td class="ta-center">${ p.bidPrice }</td>
+	                    <td class="ta-right">${ p.bidTime }</td>
+	                  </tr>
+                  </c:forEach>
                 </table>
               </div>
             </div>
