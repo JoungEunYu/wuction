@@ -101,7 +101,18 @@ public class PostingServiceImpl implements PostingService {
 		return result;
 	}
 
-	public ArrayList<Posting> selectSearchList(String keyword) {
+
+	public ArrayList<MainPagePosting> loadTopPostingList() {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		ArrayList<MainPagePosting> pList = pDao.selectTopPostingList(sqlSession);
+    
+    sqlSession.close();
+		
+		return pList;
+  }
+  
+  public ArrayList<Posting> selectSearchList(String keyword) {
 		
 		SqlSession sqlSession = MybatisTemplate.getSqlSession();
 		
@@ -111,6 +122,7 @@ public class PostingServiceImpl implements PostingService {
 		
 		return pList;
 	}
+	
 
 	
 }

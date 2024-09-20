@@ -348,8 +348,8 @@
                           <form action="<%= contextPath %>/bid.bi" method="post">
                           <table>
                           	<tr>
-                          		<input name="postingNo" value="${ selectPost.postingNo }" hidden>
-                          		<input name="memNo" value="${ loginUser.memNo }" hidden>
+                          		<input name="postingNo" type="number" value="${ selectPost.postingNo }" hidden>
+                          		<input name="memNo" type="number" value="${ loginUser.memNo }" hidden>
                           	</tr>
                               <tr>
                                   <td>상품명</td>

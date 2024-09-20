@@ -134,11 +134,11 @@
                 <td>
                   <div class="upload-container">
                     <input class="hidden-upload" type="file" name="img1" id="hidden-upload-1" />
-                    <div class="upload" id="upload-1"><img src="resource/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
+                    <div class="upload" id="upload-1"><img src="resources/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
                     <input class="hidden-upload" type="file" name="img2" id="hidden-upload-2" />
-                    <div class="upload" id="upload-2"><img src="resource/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
+                    <div class="upload" id="upload-2"><img src="resources/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
                     <input class="hidden-upload" type="file" name="img3" id="hidden-upload-3" />
-                    <div class="upload" id="upload-3"><img src="resource/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
+                    <div class="upload" id="upload-3"><img src="resources/images/camera-icon.png" style="width:32px; height: 32px;" alt=""></div>
                   </div>
                   <!-- TODO: 재추가 로직, 삭제 로직 -->
                 </td>

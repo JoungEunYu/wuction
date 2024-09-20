@@ -252,8 +252,11 @@
           </div>
           <div class="slider-container">
             <div class="slides" id="slides">
+            
               <div class="slide">
+              
                 <div class="prevNextButtonArea"></div>
+                
                 <div class="adContentArea">
                   <div>
                     <button>
@@ -282,6 +285,7 @@
                     </table>
                   </div>
                 </div>
+                
                 <div class="adContentArea">
                   <div>
                     <button>
@@ -310,128 +314,11 @@
                     </table>
                   </div>
                 </div>
+                
                 <div class="prevNextButtonArea"></div>
+                
               </div>
-              <div class="slide">
-                <div class="prevNextButtonArea"></div>
-                <div class="adContentArea">
-                  <div>
-                    <button>
-                      <img src="../resource/fndlql.png" alt="샤넬브메랑" />
-                    </button>
-                  </div>
-                  <div>
-                    <table>
-                      <tr>
-                        <td colspan="2">
-                          <a href="#" class="adGoodsTitle">샤넬 한정판 브메랑</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>현재가</td>
-                        <td>100,000,000원</td>
-                      </tr>
-                      <tr>
-                        <td>입찰자</td>
-                        <td>2,201,507명</td>
-                      </tr>
-                      <tr>
-                        <td>경매기간</td>
-                        <td>2024-08-22 23:00</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                <div class="adContentArea">
-                  <div>
-                    <button>
-                      <img src="../resource/l_2017052201003110600249914.png" alt="비트코인" />
-                    </button>
-                  </div>
-                  <div>
-                    <table>
-                      <tr>
-                        <td colspan="2">
-                          <a href="#" class="adGoodsTitle">비트코인 실물</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>현재가</td>
-                        <td>100,000,000원</td>
-                      </tr>
-                      <tr>
-                        <td>입찰자</td>
-                        <td>2,201,507명</td>
-                      </tr>
-                      <tr>
-                        <td>경매기간</td>
-                        <td>2024-08-22 23:00</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                <div class="prevNextButtonArea"></div>
-              </div>
-              <div class="slide">
-                <div class="prevNextButtonArea"></div>
-                <div class="adContentArea">
-                  <div>
-                    <button>
-                      <img src="../resource/다운로드.png" alt="슈프림벽돌" />
-                    </button>
-                  </div>
-                  <div>
-                    <table>
-                      <tr>
-                        <td colspan="2">
-                          <a href="#" class="adGoodsTitle">슈프림 벽돌</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>현재가</td>
-                        <td>100,000,000원</td>
-                      </tr>
-                      <tr>
-                        <td>입찰자</td>
-                        <td>2,201,507명</td>
-                      </tr>
-                      <tr>
-                        <td>경매기간</td>
-                        <td>2024-08-22 23:00</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                <div class="adContentArea">
-                  <div>
-                    <button>
-                      <img src="../resource/다이아_박힌_헬로키티.png" alt="헬로키티" />
-                    </button>
-                  </div>
-                  <div>
-                    <table>
-                      <tr>
-                        <td colspan="2">
-                          <a href="#" class="adGoodsTitle">다이아로 만든 헬로키티</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>현재가</td>
-                        <td>100,000,000원</td>
-                      </tr>
-                      <tr>
-                        <td>입찰자</td>
-                        <td>2,201,507명</td>
-                      </tr>
-                      <tr>
-                        <td>경매기간</td>
-                        <td>2024-08-22 23:00</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                <div class="prevNextButtonArea"></div>
-              </div>
+              
             </div>
             <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="next" onclick="moveSlide(1)">&#10095;</button>
@@ -448,6 +335,7 @@
       <%@ include file="footer.jsp" %>
     </div>
     <div> </div>
+
   </div>
 
   <script>
@@ -461,8 +349,93 @@
     }
 
     window.onload = function() {
+    	loadTopPosting();
         loadPosting();
     };
+    
+    function loadTopPosting() {
+        $.ajax({
+            url: 'loadTopPosting.pr',
+            dataType: 'json',
+            success: function(posts) {
+                const slidesContainer = document.getElementById("slides");
+                slidesContainer.innerHTML = ""; // 기존 슬라이드 내용 초기화
+                let slideHTML = ""; // 슬라이드 HTML을 누적할 변수
+
+                for (let i = 0; i < posts.length; i += 2) {
+                    slideHTML += "<div class='slide'>"
+                                + "<div class='prevNextButtonArea'></div>"
+                                + "<div class='adContentArea'>"
+                                + "<div><button><img src='resources/uploadFiles/" + posts[i].imgFile + "' alt='" + posts[i].productName + "'/></button></div>"
+                                + "<div>"
+                                + "<table>"
+                                + "<tr>"
+                                + "<td colspan='2'>"
+                                + "<a href='#' class='adGoodsTitle'>" + posts[i].productName + "</a>"
+                                + "</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                + "<td>현재가</td>"
+                                + "<td>" + posts[i].maxPrice + "원</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                + "<td>입찰자</td>"
+                                + "<td>" + posts[i].bidCount +  "명</td>"
+                                + "</tr>"
+                                + "<tr>"
+                                + "<td>경매기간</td>"
+                                + "<td>" + posts[i].endTime + "</td>"
+                                + "</tr>"
+                                + "</table>"
+                                + "</div>"
+                                + "</div>";
+
+                    // 두 번째 게시물이 있을 경우 추가
+                    if (i + 1 < posts.length) {
+                        slideHTML += "<div class='adContentArea'>"
+                                   + "<div><button><img src='resources/uploadFiles/" + posts[i + 1].imgFile + "' alt='" + posts[i + 1].productName + "'/></button></div>"
+                                   + "<div>"
+                                   + "<table>"
+                                   + "<tr>"
+                                   + "<td colspan='2'>"
+                                   + "<a href='#' class='adGoodsTitle'>" + posts[i + 1].productName + "</a>"
+                                   + "</td>"
+                                   + "</tr>"
+                                   + "<tr>"
+                                   + "<td>현재가</td>"
+                                   + "<td>" + posts[i + 1].maxPrice + "원</td>"
+                                   + "</tr>"
+                                   + "<tr>"
+                                   + "<td>입찰자</td>"
+                                   + "<td>" + posts[i + 1].bidCount +  "명</td>"
+                                   + "</tr>"
+                                   + "<tr>"
+                                   + "<td>경매기간</td>"
+                                   + "<td>" + posts[i + 1].endTime + "</td>"
+                                   + "</tr>"
+                                   + "</table>"
+                                   + "</div>"
+                                   + "</div>";
+                    }
+
+                    slideHTML += "<div class='prevNextButtonArea'></div>"
+                               + "</div>"; // slide div 닫기
+                }
+
+                slidesContainer.innerHTML = slideHTML; // 슬라이드 내용 추가
+                console.log("파일 로드 성공");
+            },
+            error: function(err) {
+                console.log("파일 로드 실패", err);
+            }
+        });
+    }
+
+
+
+
+
+
     
     function loadPosting() {
         $.ajax({
