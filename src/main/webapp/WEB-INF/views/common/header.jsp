@@ -62,10 +62,22 @@
          align-items: center;
        }
 
-       .search-area input { 
+       .search-area fieldset { 
          border: solid 4px red;
          width: 100%;
          height: 35%;
+         padding: 0px;
+         margin: 0px;
+         display: flex;
+       }
+
+       .search-area > fieldset > input { 
+         width: 90%;
+         height: 100%;
+         box-sizing: border-box;
+         border: 0px;
+         outline:none;
+        
        }
 
        .posting-btn-area {
@@ -90,6 +102,19 @@
        .posting-btn-area button a {
        	color: #ffffff;
        	text-decoration: none;
+       }
+
+       .search-btn {
+        background-image: url("resources/images/free-icon-magnifier-2311526.png");
+        box-sizing: border-box; 
+        height: 100%;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        border: 0px;
+        width: 10%;
+        cursor: pointer;
+        background-color: white;
        }
     </style>
 </head>
@@ -118,9 +143,9 @@
       >
         <button class="logo" onclick="location.href='<%= contextPath %>/mainPage.co'"></button>
       </div>
-      <div style="grid-column: 3 / span 7; grid-row: 1 span 1"></div>
+      <div style="grid-column: 3 / span 7; grid-row: 1 span 1;"></div>
       
-      <div style="grid-column: 10 / span 3; grid-row: 1 / span 1">
+      <div style="grid-column: 10 / span 3; grid-row: 1 / span 1;">
       
 	  <c:choose>
 	  	<c:when test="${empty loginUser}">
@@ -139,13 +164,16 @@
 	  </c:choose>
 	  
         </div>
-		<div class="search-area">
-          <input
-            type="text"
-            name=""
-            placeholder="검색어를 입력해주세요."
-          />
-        </div>
+		<form class="search-area" method="get" action="search.pr">
+		  	<fieldset>
+	          <input
+	            type="text"
+	            name="keyword"
+	            placeholder="검색어를 입력해주세요."   
+          		/>
+			  <button class="search-btn" type="submit"></button>
+			</fieldset>
+        </form>
 
 	  <c:choose>
 	  	<c:when test="${empty loginUser}">

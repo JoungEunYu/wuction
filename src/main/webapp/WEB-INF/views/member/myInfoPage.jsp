@@ -263,7 +263,7 @@
 	    String sessionUserPwd = loginUser.getMemPwd(); // 사용자 객체에서 비밀번호를 가져옴
 	%>
     <div id="container">
-        <div>좌측 빈 공간</div>
+        <div></div>
         <div id="content">
             <%@ include file="../common/header.jsp" %>
             <main>
@@ -338,7 +338,7 @@
             </main>
             <%@ include file="../common/footer.jsp" %>
         </div>
-        <div>우측 빈 공간</div>
+        <div></div>
     </div>
 
     <!-- 모달 배경 -->
