@@ -33,10 +33,10 @@ public class ProductPageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//int postingNo = Integer.parseInt(request.getParameter("postingNo"));
+		int postingNo = Integer.parseInt(request.getParameter("postingNo"));
 		
 		Posting p = new Posting();
-		p.setPostingNo(1);
+		p.setPostingNo(postingNo);
 		
 		// 게시물 정보 조회
 		Posting selectPost = new PostingServiceImpl().selectPosting(p);
