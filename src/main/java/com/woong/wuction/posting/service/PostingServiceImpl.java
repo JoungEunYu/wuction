@@ -101,5 +101,15 @@ public class PostingServiceImpl implements PostingService {
 		return result;
 	}
 
+	public ArrayList<MainPagePosting> loadTopPostingList() {
+		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		
+		ArrayList<MainPagePosting> pList = pDao.selectTopPostingList(sqlSession);
+		
+		sqlSession.close();
+		
+		return pList;
+	}
+
 	
 }
