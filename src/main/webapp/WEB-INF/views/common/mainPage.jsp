@@ -481,7 +481,7 @@
                 posts.forEach(function(post, index) {
                     const buttonClass = index === 0 ? 'goods1span3 goodsArea' : 'goodsArea';
                     const postHTML = 
-                        '<button class="' + buttonClass + '">' +
+                        '<button onclick="productPage(' + post.postingNo + ');" class="' + buttonClass + '">' +
                             '<div class="goodsImg" style="background-image: url(\'resources/uploadFiles/' + post.imgFile + '\');"></div>' +
                             '<div>' +
                                 '<table class="goodsInfoTable">' +
@@ -511,6 +511,10 @@
                 console.error("파일 로드에 실패했습니다.", err);
             }
         });
+    }
+    
+    function productPage(postingNo) {
+        location.href = "detail.pr?postingNo=" + postingNo;
     }
   </script>
 </body>
