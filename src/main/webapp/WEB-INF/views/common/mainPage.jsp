@@ -334,7 +334,8 @@
       </main>
       <%@ include file="footer.jsp" %>
     </div>
-    <div></div>
+    <div> </div>
+
   </div>
 
   <script>
