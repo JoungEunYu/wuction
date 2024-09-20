@@ -296,11 +296,11 @@
                                 </tr>
                                 <tr>
                                     <td class="infoList">생년월일</td>
-                                    <td><input type="text" class="height-22" value="${ loginUser.birthDate }" name="birthdate" required></td>
+                                    <td><input type="text" class="height-22" value="${ loginUser.birthDate }" name="birthDate" required></td>
                                 </tr>
                                 <tr>
                                     <td class="infoList">주소</td>
-                                    <td><input type="text" name="postcode" id="postcode" style="width: 95px; margin-right: 5px" class="height-22" value="${ loginUser.postCode }" required><button onclick="execDaumPostcode(); return false;">우편번호</button></td>
+                                    <td><input type="text" name="postCode" id="postcode" style="width: 95px; margin-right: 5px" class="height-22" value="${ loginUser.postCode }" required><button onclick="execDaumPostcode(); return false;">우편번호</button></td>
                                 </tr>
                                 <tr>
                                     <td class="infoList"></td>
