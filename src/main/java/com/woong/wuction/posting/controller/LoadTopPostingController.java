@@ -1,23 +1,30 @@
-package com.woong.wuction.member.controller;
+package com.woong.wuction.posting.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.woong.wuction.posting.model.dto.MainPagePosting;
+import com.woong.wuction.posting.service.PostingServiceImpl;
+
 /**
- * Servlet implementation class DeleteMemberController
+ * Servlet implementation class LoadTopPostingController
  */
-@WebServlet("/deleteMemberPage.me")
-public class DeleteMemberPageController extends HttpServlet {
+@WebServlet("/loadTopPosting.pr")
+public class LoadTopPostingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMemberPageController() {
+    public LoadTopPostingController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +33,16 @@ public class DeleteMemberPageController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/member/deleteMemberPage.jsp").forward(request, response);
+		
+		ArrayList<MainPagePosting> posts = new PostingServiceImpl().loadTopPostingList();
+		
+		Gson gson = new Gson();
+		
+		String jsonResponse = gson.toJson(posts);
+		response.setContentType("application/json; charset=UTF-8"); // 응답할 때 타입
+		PrintWriter out = response.getWriter();
+		out.print(jsonResponse);
+		out.flush();
 	}
 
 	/**

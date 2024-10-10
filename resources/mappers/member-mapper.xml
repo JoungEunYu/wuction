@@ -53,7 +53,10 @@
 	<update id="updateMember">
 		UPDATE MEMBER
 		   SET NAME = #{name},
-		   		BIRTH_DATE = #{birthDate}
+		   		BIRTH_DATE = #{birthDate},
+		   		POST_CODE = #{postCode},
+		   		FULL_ADDRESS = #{fullAddress},
+		   		EMAIL = #{email}
 		WHERE MEM_ID = #{memId}
 	</update>
   
@@ -79,5 +82,9 @@
 			SET MEM_PWD = #{memPwd}
 		WHERE EMAIL = #{email} AND STATUS = 'Y'
 	</update>
+	
+	
+	
+	
 		
 </mapper>

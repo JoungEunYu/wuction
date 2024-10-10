@@ -5,7 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="">
+<title>Wuction</title>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/x-icon';
+            link.href = 'resources/images/favicon.png';
+            document.head.appendChild(link);
+        });
+</script>
 <style>
       html,
       body {
@@ -164,7 +174,7 @@
 	  </c:choose>
 	  
         </div>
-		<form class="search-area" method="get" action="search.pr">
+		<form class="search-area" method="get" action="<%= contextPath %>/search.pr">
 		  	<fieldset>
 	          <input
 	            type="text"

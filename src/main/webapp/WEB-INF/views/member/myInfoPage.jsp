@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Wuction</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
         /* 기존 스타일들 유지 */
@@ -296,11 +296,11 @@
                                 </tr>
                                 <tr>
                                     <td class="infoList">생년월일</td>
-                                    <td><input type="text" class="height-22" value="${ loginUser.birthDate }" name="birthdate" required></td>
+                                    <td><input type="text" class="height-22" value="${ loginUser.birthDate }" name="birthDate" required></td>
                                 </tr>
                                 <tr>
                                     <td class="infoList">주소</td>
-                                    <td><input type="text" name="postcode" id="postcode" style="width: 95px; margin-right: 5px" class="height-22" value="${ loginUser.postCode }" required><button onclick="execDaumPostcode(); return false;">우편번호</button></td>
+                                    <td><input type="text" name="postCode" id="postcode" style="width: 95px; margin-right: 5px" class="height-22" value="${ loginUser.postCode }" required><button onclick="execDaumPostcode(); return false;">우편번호</button></td>
                                 </tr>
                                 <tr>
                                     <td class="infoList"></td>

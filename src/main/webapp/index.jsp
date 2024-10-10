@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="resources/images/favicon.png">
+<title>Wuction</title>
 </head>
 <body>
 	<%@ include file="WEB-INF/views/common/mainPage.jsp" %>

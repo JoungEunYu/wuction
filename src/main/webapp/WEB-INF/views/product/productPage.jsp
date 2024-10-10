@@ -1,3 +1,4 @@
+<%@page import="com.woong.wuction.member.model.vo.Member"%>
 <%@page import="com.woong.wuction.posting.model.vo.Bid"%>
 <%@page import="com.woong.wuction.posting.model.vo.Image"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${selectPost.productName}</title>
 <style>
 	html,
 	body {
@@ -253,6 +254,16 @@
 	    font-size: 20px; font-weight: 900;
 	}
 	
+	.openModalBtn {
+		border:none;
+		background-color: #ff6262; 
+		width: 278px; height: 49px; 
+		border-radius: 25px; 
+		font-weight: 800; 
+		font-size:20px; 
+		color: white;
+	}
+	
 </style>
 </head>
 <body> 
@@ -263,14 +274,18 @@
 	
 	
 	long max = 0;
-    if (bidList != null && !bidList.isEmpty()) {
-        max = bidList.get(0).getBidPrice();
-        for (Bid bid : bidList) {
-            if (max < bid.getBidPrice()) {
-                max = bid.getBidPrice();
-            }
-        }
-    }
+	if (bidList == null || bidList.isEmpty()) { // null 체크를 먼저 수행
+	    max = selectPost.getStartPrice();
+	} else {
+	    max = bidList.get(0).getBidPrice();
+	    for (Bid bid : bidList) {
+	        if (max < bid.getBidPrice()) {
+	            max = bid.getBidPrice();
+	        }
+	    }
+	}
+    
+
 %>
   <div id="container">
     <div></div>
@@ -324,10 +339,23 @@
                         </tr>
                         <tr>
                             <td style="font-size: 18px; font-weight: 900;">입찰 금액 입력</td>
-                            <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" id="bidPriceInput"></td>
+                            <td style="text-align: right;"><input style="height: 45px; width: 150px;" type="number" id="bidPriceInput" step="${ selectPost.bidUnit }" min="<%= max %>" max="9223372036854775807" value="<%= max %>"></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="vertical-align: bottom; text-align: right;"><button id="openModalBtn" style="border:none;background-color: #ff6262; width: 278px; height: 49px; border-radius: 25px; font-weight: 800; font-size:20px; color: white;">입찰 확정 하기</button></td>
+                            <td colspan="2" style="vertical-align: bottom; text-align: right;">
+                            
+                          	<c:choose>
+							  	<c:when test="${empty loginUser}">
+							          <button class="openModalBtn" onclick="loginPage();">입찰 확정 하기</button>
+							    </c:when>
+							    <c:otherwise>
+							    
+							    	<c:if test="${loginUser.memNo != selectPost.memNo}">
+							          <button id="openModalBtn" class="openModalBtn">입찰 확정 하기</button>
+							    	</c:if>
+							    </c:otherwise>
+							</c:choose>
+                          
                         </tr>
                     </table>
                     
@@ -348,8 +376,8 @@
                           <form action="<%= contextPath %>/bid.bi" method="post">
                           <table>
                           	<tr>
-                          		<input name="postingNo" value="${ selectPost.postingNo }" hidden>
-                          		<input name="memNo" value="${ loginUser.memNo }" hidden>
+                          		<input name="postingNo" type="number" value="${ selectPost.postingNo }" hidden>
+                          		<input name="memNo" type="number" value="${ loginUser.memNo }" hidden>
                           	</tr>
                               <tr>
                                   <td>상품명</td>
@@ -357,7 +385,9 @@
                               </tr>
                               <tr>
                                   <td>현재가</td>
-                                  <td><input class="product_modal_input" type="text" value="<%= max %>" readonly></td>
+                                  <td>
+                                  	<input class="product_modal_input" type="text" value="<%= max %>" readonly>
+                                  </td>
                               </tr>
                               <tr>
                                   <td>입찰 금액</td>
@@ -436,9 +466,20 @@
 
         // 모달 열기
         openModalBtn.addEventListener('click', () => {
-            modalOverlay.style.display = 'block';
-            
-            modalBidPriceInput.value = bidPriceInput.value;
+        	const bidPriceValue = bidPriceInput.value;
+        	 if (bidPriceValue % ${selectPost.bidUnit} === 0 && bidPriceValue > <%= max %>) {
+                 
+        		 modalOverlay.style.display = 'block';
+                 
+                 modalBidPriceInput.value = bidPriceInput.value;
+                 
+                 
+             } else if (bidPriceValue % ${selectPost.bidUnit} !== 0) {
+                 alert("입찰 단위는 " + ${selectPost.bidUnit} + "원입니다.");  
+             } else {
+                 alert("현재가 이상으로 입찰 가능합니다.");
+             }
+        	
         });
 
         // 모달 닫기
@@ -472,6 +513,14 @@
             currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
             updateCarousel();
         });
+        
+        function loginPage() {
+        	location.href = "<%= contextPath %>/loginPage.me";
+        }
+        
+      
+
+
 
     </script>
 </body>
