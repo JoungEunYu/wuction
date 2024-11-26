@@ -40,7 +40,13 @@ public class PostingDao {
 		return (ArrayList)sqlSession.selectList("postingMapper.selectPostingList");
 	}
 
+	public ArrayList<MainPagePosting> selectTopPostingList(SqlSession sqlSession) {
+		
+		return (ArrayList)sqlSession.selectList("postingMapper.selectTopPostingList");
+	}
+
 	public ArrayList<Posting> selectSearchList(SqlSession sqlSession, String keyword) {
+    
 		return (ArrayList)sqlSession.selectList("postingMapper.selectSearchList", keyword);
 	}
 

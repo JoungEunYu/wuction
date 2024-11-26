@@ -1,4 +1,4 @@
-package com.woong.wuction.member.controller;
+package com.woong.wuction.mypage.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import com.woong.wuction.member.service.MemberServiceImpl;
 /**
  * Servlet implementation class UpdateMemberController
  */
-@WebServlet("/update.me")
+@WebServlet("/updateInfo.me")
 public class UpdateMemberController extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
@@ -34,18 +34,33 @@ public class UpdateMemberController extends HttpServlet {
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
+	   
+	   request.setCharacterEncoding("UTF-8");
+	   
       HttpSession session = request.getSession();
       Member loginUser = (Member) session.getAttribute("loginUser");
 
       String memPwd = request.getParameter("memPwd");
 
       if (loginUser.getMemPwd().equals(memPwd)) {
-         String name = request.getParameter("name");
+         String name = request.getParameter("userName");
          String birthDate = request.getParameter("birthDate");
+         String postCode = request.getParameter("postCode");
+         String address = request.getParameter("address");
+ 		 String adDetail = request.getParameter("detailAddress");
+         String email = request.getParameter("email");
+         
+         String fullAddress = address + "/" + adDetail;
+         
+         
+         
          // TODO : 이메일 , 우편번호, 주소, 상세주소 수정 기능 추가필요
 
          loginUser.setName(name);
          loginUser.setBirthDate(birthDate);
+         loginUser.setPostCode(postCode);
+         loginUser.setFullAddress(fullAddress);
+         loginUser.setEmail(email);
 
          Member updateMem = memberService.updateMember(loginUser);
 
@@ -59,8 +74,8 @@ public class UpdateMemberController extends HttpServlet {
          }
       } else {
     	  // TODO : 잘못 입력했을 경우 알림창(비밀번호를 확인해주세요) 띄우고 마이페이지로 리다이렉트 
-         request.setAttribute("errorMsg", "비밀번호를 잘못 입력하셨습니다.");
-         request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
+         session.setAttribute("alertMsg", "비밀번호를 확인해주세요.");
+         request.getRequestDispatcher("WEB-INF/views/common/myInfoPage.jsp").forward(request, response);
       }
    }
 

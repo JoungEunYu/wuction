@@ -19,7 +19,7 @@
 		FROM BID
 		    JOIN MEMBER m USING (MEM_NO)
 		    JOIN POSTING p USING (POSTING_NO)
-		WHERE POSTING_NO = 1 AND p.STATUS='BID' AND m.STATUS = 'Y'
+		WHERE POSTING_NO = #{postingNo} AND p.STATUS='BID' AND m.STATUS = 'Y'
 		ORDER BY BID_TIME DESC
 	</select>
 	
@@ -27,4 +27,21 @@
 		INSERT INTO BID
 			VALUES(BNO_SEQ.NEXTVAL, #{postingNo}, #{memNo}, #{bidPrice}, SYSDATE)
 	</insert>
+	
+	
+	
+	
+	
+	
+	<resultMap type="MyBid" id="myBidResultSet">
+		<result property="bidPrice" column="BID_PRICE"/>
+		<result property="bidTime" column="BID_TIME"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+	</resultMap>
+	
+	<select id="selectMyBidList" resultMap="myBidResultSet">
+		SELECT BID_PRICE, BID_TIME, PRODUCT_NAME
+		FROM POSTING JOIN BID B USING (POSTING_NO)
+		WHERE b.MEM_NO = #{memNo}
+	</select>
 </mapper>

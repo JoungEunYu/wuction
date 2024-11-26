@@ -1,10 +1,12 @@
 package com.woong.wuction.member.service;
 
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.woong.wuction.common.MybatisTemplate;
 import com.woong.wuction.member.model.dao.MemberDao;
 import com.woong.wuction.member.model.vo.Member;
+import com.woong.wuction.posting.model.vo.Bid;
 
 public class MemberServiceImpl implements MemberService {
 	private MemberDao mDao = new MemberDao();
@@ -64,10 +66,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member updateMember(Member m) {
-Member updateMem = null;
-		
 		SqlSession sqlSession = MybatisTemplate.getSqlSession();
+		Member updateMem = null;
 		
+		//System.out.println(m);
 		int result = mDao.updateMember(sqlSession, m);		
 		if (result > 0) {
 			sqlSession.commit();
